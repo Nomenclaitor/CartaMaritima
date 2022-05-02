@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newUserPackage.SignupFXMLController">
+   <top>
+      <VBox prefHeight="134.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox minHeight="10.0" prefHeight="10.0" prefWidth="200.0" />
+            <ImageView fitHeight="108.0" fitWidth="830.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgData/signinBanner.png" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox prefHeight="250.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox maxHeight="104.0" minHeight="60.0" prefHeight="104.0" prefWidth="800.0">
+               <children>
+                  <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Label minHeight="40.0" prefHeight="40.0" prefWidth="610.0" text="La contraseña debe de ser una combinación entre 8 y 15 numeros y letras en mayuscula y minuscula, sin espacios en blanco y con al menos un caracter especial" wrapText="true">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="780.0">
+                     <children>
+                        <TextField fx:id="passwordField" minWidth="250.0" prefHeight="25.0" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label fx:id="passworLabel" minHeight="40.0" prefHeight="40.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" visible="false" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox maxHeight="91.0" minHeight="60.0" prefHeight="72.0" prefWidth="800.0">
+               <children>
+                  <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="780.0">
+                     <children>
+                        <TextField fx:id="PasswordRepField" minWidth="250.0" prefHeight="25.0" prefWidth="250.0">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label fx:id="passwordRepLabel" minHeight="40.0" prefHeight="40.0" text="La contraseña introducida no es la misma" textFill="RED" visible="false" wrapText="true">
+                           <HBox.margin>
+                              <Insets left="20.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox prefHeight="85.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="800.0">
+               <children>
+                  <Button fx:id="previousButton" mnemonicParsing="false" onAction="#previousClicked" style="-fx-background-color: #0685BC;" text="Atrás" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/flechaAIzq.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nextClicked" style="-fx-background-color: #0685BC;" text="Siguiente" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/flechaADer.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="800.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #0685BC;">
+               <children>
+                  <Label text="Nautica 418 © 2022" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="30.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="800.0" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

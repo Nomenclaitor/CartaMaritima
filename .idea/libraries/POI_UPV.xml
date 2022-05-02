@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="POI_UPV">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/POI_UPV.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
