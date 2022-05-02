@@ -85,9 +85,14 @@ public class LoginFXMLController implements Initializable {
     private void checkName() {
         String nameFieldinput = nameTextfield.textProperty().getValueSafe();
         if (!PoiUPVApp.navLib.exitsNickName(nameFieldinput)) {
-            auxiliarMethods.manageError(name404Label, nameTextfield, validUsername);
+            auxiliarMethods.manageError(name404Label, incorrectPasswdLabel, nameTextfield, validUsername);
+            passwordTextfield.disableProperty().bind(Bindings.not(validUsername));
+            passwordTextfield.opacityProperty().set(0.25);
+            incorrectPasswdLabel.setText("Introduzca un nombre de usuario valido para continuar");
         } else {
-            auxiliarMethods.manageCorrect(name404Label, nameTextfield, validUsername);
+            auxiliarMethods.manageCorrect(name404Label, incorrectPasswdLabel, nameTextfield, validUsername);
+            passwordTextfield.opacityProperty().set(1);
+            incorrectPasswdLabel.setText("La contraseña introducida es incorrecta");
             PoiUPVApp.currentUser = PoiUPVApp.navLib.getUser(nameFieldinput);
         }
     }

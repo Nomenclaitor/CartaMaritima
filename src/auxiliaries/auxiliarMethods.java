@@ -21,9 +21,9 @@ public class auxiliarMethods {
         //textField.requestFocus();
      }
     
-    public static void manageError(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField, BooleanProperty boolprop) {
+    public static void manageError(Label errorLabel, Label secondErrorLabel, TextField firstTextField, BooleanProperty boolprop) {
         boolprop.setValue(Boolean.FALSE);
-        showErrorMessage(errorLabel, firstTextField, secondTextField, thirdTextField);
+        showErrorMessage(errorLabel, secondErrorLabel, firstTextField);
     }
     
     public static void showErrorMessage(Label errorLabel,TextField textField) {
@@ -31,11 +31,10 @@ public class auxiliarMethods {
         textField.styleProperty().setValue("-fx-background-color: #FCE5E0");    
     }
     
-    public static void showErrorMessage(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField) {
+    public static void showErrorMessage(Label errorLabel, Label secondErrorLabel, TextField firstTextField) {
         errorLabel.visibleProperty().set(true);
+        secondErrorLabel.visibleProperty().set(true);
         firstTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
-        secondTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
-        thirdTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
     }
     
     public static void manageCorrect(Label errorLabel,TextField textField, BooleanProperty boolProp ){
@@ -43,20 +42,19 @@ public class auxiliarMethods {
         hideErrorMessage(errorLabel,textField);
     }
     
-    public static void manageCorrect(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField, BooleanProperty boolprop) {
+    public static void manageCorrect(Label errorLabel, Label secondErrorLabel, TextField firstTextField,BooleanProperty boolprop) {
        boolprop.setValue(Boolean.TRUE);
-        hideErrorMessage(errorLabel, firstTextField, secondTextField, thirdTextField);
+        hideErrorMessage(errorLabel, secondErrorLabel, firstTextField);
     }
     
     public static void hideErrorMessage(Label errorLabel,TextField textField) {
         errorLabel.visibleProperty().set(false);
-        textField.styleProperty().setValue("-fx-background-color: #C2FFDA");
+        textField.styleProperty().setValue("-fx-background-color: #C7EEFF");
     }
     
-    public static void hideErrorMessage(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField) {
+    public static void hideErrorMessage(Label errorLabel, Label secondErrorLabel, TextField firstTextField) {
         errorLabel.visibleProperty().set(false);
-        firstTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
-        secondTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
-        thirdTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
+        secondErrorLabel.visibleProperty().set(false);
+        firstTextField.styleProperty().setValue("-fx-background-color: #C7EEFF");
     }
 }

@@ -75,7 +75,7 @@
                               <Insets left="40.0" />
                            </HBox.margin>
                         </PasswordField>
-                        <Label fx:id="incorrectPasswdLabel" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="138.0" text="Contraseña incorreta" textFill="RED" visible="false" wrapText="true">
+                        <Label fx:id="incorrectPasswdLabel" minHeight="40.0" minWidth="340.0" prefHeight="40.0" prefWidth="340.0" text="La contraseña introducida es incorrecta" textFill="RED" visible="false" wrapText="true">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>

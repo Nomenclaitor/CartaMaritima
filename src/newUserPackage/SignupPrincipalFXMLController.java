@@ -110,7 +110,10 @@ public class SignupPrincipalFXMLController implements Initializable {
         
         String inputUsername = userNameField.textProperty().getValueSafe();
         
-        if (PoiUPVApp.navLib.exitsNickName(inputUsername) || !model.User.checkNickName(inputUsername)) {
+        if (PoiUPVApp.navLib.exitsNickName(inputUsername)) {
+            auxiliarMethods.manageError(userNameLabel, userNameField, validUsername);
+        } else if(!model.User.checkNickName(inputUsername)) {
+            userNameLabel.setText("El nombre de usuario no cumple con los requisitos.");
             auxiliarMethods.manageError(userNameLabel, userNameField, validUsername);
         } else {
             auxiliarMethods.manageCorrect(userNameLabel, userNameField, validUsername);
