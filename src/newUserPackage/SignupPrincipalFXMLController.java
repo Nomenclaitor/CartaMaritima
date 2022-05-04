@@ -63,9 +63,11 @@ public class SignupPrincipalFXMLController implements Initializable {
     
     protected static String username;
     protected static String email;
-    protected static String birthday;
+    protected static LocalDate birthday;
     protected static String password;
     protected static String profilePath;
+    
+    protected BooleanBinding validFields;
     
     /**
      * Initializes the controller class.
@@ -80,8 +82,10 @@ public class SignupPrincipalFXMLController implements Initializable {
         validEmail.setValue(Boolean.FALSE);
         validBirthday.setValue(Boolean.FALSE);
         
+        
+        
         BooleanBinding userEmailBinding = Bindings.and(validUsername, validEmail);
-        BooleanBinding validFields = Bindings.and(userEmailBinding, validBirthday);
+        validFields = Bindings.and(userEmailBinding, validBirthday);
         
         userNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -101,13 +105,21 @@ public class SignupPrincipalFXMLController implements Initializable {
             }
         });
         
-        nextButton.disableProperty().bind(Bindings.not(validFields));
-    }    
+    }  
+    
+    protected void showData() {
+        userNameField.setText(username);
+        emailField.setText(email);
+        datePicker.setValue(birthday);
+        
+        validUsername.setValue(Boolean.TRUE);
+        validEmail.setValue(Boolean.TRUE);
+        validBirthday.setValue(Boolean.TRUE);
+        System.out.println(password);
+    }
     
     //Test passed
     private void checkUsername() {
-        
-        
         String inputUsername = userNameField.textProperty().getValueSafe();
         
         if (PoiUPVApp.navLib.exitsNickName(inputUsername)) {
@@ -128,14 +140,15 @@ public class SignupPrincipalFXMLController implements Initializable {
             auxiliarMethods.manageError(emailLabel, emailField, validEmail);
         } else {
             auxiliarMethods.manageCorrect(emailLabel, emailField, validEmail);
-            username = inputEmail;
+            email = inputEmail;
         }
     }
     
     
     //test passed
     private void checkBirthday() {
-        if (Period.between(datePicker.getValue(), LocalDate.now()).getYears() < 16) {
+        LocalDate inputBirthday = datePicker.getValue();
+        if (Period.between(inputBirthday, LocalDate.now()).getYears() < 16) {
             validBirthday.setValue(Boolean.FALSE);
             birthdayLabel.visibleProperty().set(true);
             datePicker.styleProperty().setValue("-fx-background-color: #FCE5E0");
@@ -143,25 +156,28 @@ public class SignupPrincipalFXMLController implements Initializable {
             validBirthday.setValue(Boolean.TRUE);
             birthdayLabel.visibleProperty().set(false);
             datePicker.styleProperty().setValue("-fx-background-color: #C2FFDA");
+            birthday = inputBirthday;
         }
     }
 
     @FXML
     private void nextClicked(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root, 800, 480);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Nautica Signup");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            
-            nextButton.getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.out.println("IOException at signup fxml loader");
+        if (validFields.getValue() == true) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root, 800, 480);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Nautica Signup");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+                nextButton.getScene().getWindow().hide();
+            } catch (IOException e) {
+                System.out.println("IOException at signup fxml loader");
+            }
         }
     }
     

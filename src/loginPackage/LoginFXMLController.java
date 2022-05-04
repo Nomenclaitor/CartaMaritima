@@ -62,6 +62,8 @@ public class LoginFXMLController implements Initializable {
         correctPassword.setValue(Boolean.FALSE);
         validUsername.setValue(Boolean.FALSE);
         
+        signInButton.setDisable(true);
+        
         BooleanBinding validFields = Bindings.and(validUsername, correctPassword);
         
         nameTextfield.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -75,10 +77,6 @@ public class LoginFXMLController implements Initializable {
                 checkPassword();
             }
         });
-        
-        
-        
-        signInButton.disableProperty().bind(Bindings.not(validFields));
     }    
     
     // checkname structure from Signup project
@@ -94,6 +92,7 @@ public class LoginFXMLController implements Initializable {
             passwordTextfield.opacityProperty().set(1);
             incorrectPasswdLabel.setText("La contraseña introducida es incorrecta");
             PoiUPVApp.currentUser = PoiUPVApp.navLib.getUser(nameFieldinput);
+            signInButton.setDisable(false);
         }
     }
     
@@ -104,7 +103,7 @@ public class LoginFXMLController implements Initializable {
         } else {
             auxiliarMethods.manageCorrect(incorrectPasswdLabel, passwordTextfield, correctPassword);
         }
-    }    
+    }
 
     @FXML
     private void signInPressed(ActionEvent event) {
