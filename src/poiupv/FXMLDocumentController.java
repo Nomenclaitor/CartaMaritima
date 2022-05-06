@@ -148,12 +148,10 @@ public class FXMLDocumentController implements Initializable {
                 + "         X: " + (int) event.getX() + ",          Y: " + (int) event.getY());
     }
 
-    @FXML
     private void cerrarAplicacion(ActionEvent event) {
         ((Stage)zoom_slider.getScene().getWindow()).close();
     }
 
-    @FXML
     private void acercaDe(ActionEvent event) {
         Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
         mensaje.setTitle("Acerca de");

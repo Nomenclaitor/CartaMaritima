@@ -105,6 +105,10 @@ public class SignupFXMLController implements Initializable {
         }
     }
     
+    /**
+     * Previous clicked
+     * @param event 
+     */
     @FXML
     private void previousClicked(ActionEvent event) {
         try {
