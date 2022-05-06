@@ -107,6 +107,10 @@ public class SignupPrincipalFXMLController implements Initializable {
         
     }  
     
+    /**
+     * Shows the data input of the user in the fields when coming back to this window
+     * Retrieves the input of the user and loads it into the respective fields
+     */
     protected void showData() {
         userNameField.setText(username);
         emailField.setText(email);
@@ -119,6 +123,10 @@ public class SignupPrincipalFXMLController implements Initializable {
     }
     
     //Test passed
+    /**
+     * Checks if the username has been already registered in the system
+     * and if the username meets the requirements
+     */
     private void checkUsername() {
         String inputUsername = userNameField.textProperty().getValueSafe();
         
@@ -134,6 +142,9 @@ public class SignupPrincipalFXMLController implements Initializable {
     }
     
     //Test passed
+    /**
+     * Checks if the email meets the requirements (email domain must be legal)
+     */
     private void checkEmail() {
         String inputEmail = emailField.textProperty().getValueSafe();
         if (!model.User.checkEmail(inputEmail)) {
@@ -146,6 +157,10 @@ public class SignupPrincipalFXMLController implements Initializable {
     
     
     //test passed
+    /**
+     * Checks if the birthday input meets the requirements
+     * user must be at least 16 years old
+     */
     private void checkBirthday() {
         LocalDate inputBirthday = datePicker.getValue();
         if (Period.between(inputBirthday, LocalDate.now()).getYears() < 16) {
@@ -160,6 +175,10 @@ public class SignupPrincipalFXMLController implements Initializable {
         }
     }
 
+    /**
+     * Next button controller
+     * @param event 
+     */
     @FXML
     private void nextClicked(ActionEvent event) {
         if (validFields.getValue() == true) {

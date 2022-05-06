@@ -79,6 +79,10 @@ public class LoginFXMLController implements Initializable {
         });
     }    
     
+    /**
+     * Checks if the username exists in the database
+     * The password field wont unlock until a correct username has been introduced
+     */
     // checkname structure from Signup project
     private void checkName() {
         String nameFieldinput = nameTextfield.textProperty().getValueSafe();
@@ -96,6 +100,10 @@ public class LoginFXMLController implements Initializable {
         }
     }
     
+    /**
+     * Checks if the password input matches the password of the provided
+     * username
+     */
     // checkpassword structure from signup project
     private void checkPassword() {
         if (!PoiUPVApp.currentUser.getPassword().equals((passwordTextfield.textProperty().getValueSafe()))) {
@@ -105,12 +113,20 @@ public class LoginFXMLController implements Initializable {
         }
     }
 
+    /**
+     * Sign-in button controller
+     * @param event 
+     */
     @FXML
     private void signInPressed(ActionEvent event) {
         //Main window link
         signInButton.getScene().getWindow().hide();
     }
 
+    /**
+     * Register button controller
+     * @param event 
+     */
     @FXML
     private void registerPressed(ActionEvent event) {
         //User register link

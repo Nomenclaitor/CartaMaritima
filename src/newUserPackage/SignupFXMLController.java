@@ -78,6 +78,10 @@ public class SignupFXMLController implements Initializable {
         
     } 
     
+    /**
+     * Shows the data input of the user in the fields when coming back to this window
+     * Retrieves the input of the user and loads it into the respective fields
+     */
     protected void showData() {
         
     }
@@ -85,6 +89,9 @@ public class SignupFXMLController implements Initializable {
     //Check what is wrong with the password
     //Would be good to have
     //Test passed
+    /**
+     * Checks if the password meets the requirements (combination and length)
+     */
     private void checkPassword() {
         inputPassword = passwordField.textProperty().getValueSafe();
         if (!model.User.checkPassword(inputPassword)) {
@@ -95,6 +102,9 @@ public class SignupFXMLController implements Initializable {
     }
     
     //Test passed
+    /**
+     * Checks if the password repetition is equal to the previous one
+     */
     private void checkPasswordRep() {
         passwordRep = PasswordRepField.textProperty().getValueSafe();
         if (!inputPassword.equals(passwordRep)) {
@@ -131,6 +141,11 @@ public class SignupFXMLController implements Initializable {
         }
     }
 
+    /**
+     * Next button controller
+     * Next clicked
+     * @param event 
+     */
     @FXML
     private void nextClicked(ActionEvent event) {
     }
