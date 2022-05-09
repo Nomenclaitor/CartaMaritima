@@ -11,9 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 /**
@@ -26,29 +31,41 @@ public class ProblemSelectWindowController implements Initializable {
     @FXML
     private Text usernameText;
     @FXML
-    private Button datamodButton;
-    @FXML
     private Button userProgressButton;
     @FXML
     private Button helpButton;
     @FXML
     private Button changeuUerButton;
     @FXML
-    private Button openRandomBUtotn;
+    private Button mainMenuButton;
     @FXML
-    private Button openSelectedButton;
+    private HBox nameTextField;
     @FXML
-    private ListView<?> problemListView;
+    private TextField nameField;
     @FXML
-    private Label problemTextLabel;
+    private TextField emailField;
     @FXML
-    private RadioButton option1Selector;
+    private Label emailLabel;
     @FXML
-    private RadioButton option2Selector;
+    private DatePicker datePicker;
     @FXML
-    private RadioButton option3Selector;
+    private Label emailLabel1;
     @FXML
-    private RadioButton option4Selection;
+    private PasswordField passwordField;
+    @FXML
+    private Label passworLabel;
+    @FXML
+    private PasswordField PasswordRepField;
+    @FXML
+    private Label passwordRepLabel;
+    @FXML
+    private ImageView defaultPic6;
+    @FXML
+    private Button fileSelectButton;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button saveButton;
 
     /**
      * Initializes the controller class.
@@ -75,11 +92,15 @@ public class ProblemSelectWindowController implements Initializable {
     }
 
     @FXML
-    private void openRandomPressed(ActionEvent event) {
+    private void fileSelectPressed(ActionEvent event) {
     }
 
     @FXML
-    private void openSelectedPressed(ActionEvent event) {
+    private void cancelPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void savePressed(ActionEvent event) {
     }
     
 }
