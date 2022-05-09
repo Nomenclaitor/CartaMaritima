@@ -70,9 +70,10 @@
                                     <Font name="Arial Rounded MT Bold" size="12.0" />
                                  </font>
                               </Button>
+                              <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                               <Button fx:id="changeuUerButton" mnemonicParsing="false" onAction="#changeUserPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Cerrar Sesión" textFill="#ff4a4a">
                                  <HBox.margin>
-                                    <Insets left="280.0" />
+                                    <Insets right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="14.0" />
@@ -126,6 +127,7 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </HBox>
+                        <Region prefHeight="0.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electrónico">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -138,7 +140,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Label fx:id="emailLabel" minHeight="40.0" prefHeight="20.0" text="El correo tiene un formato incorrecto" textFill="RED" wrapText="true">
+                              <Label fx:id="emailLabel" minHeight="40.0" prefHeight="20.0" text="El correo tiene un formato incorrecto" textFill="RED" visible="false" wrapText="true">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -148,6 +150,7 @@
                               <Insets left="20.0" />
                            </VBox.margin>
                         </HBox>
+                        <Region prefHeight="0.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -159,7 +162,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                            <children>
                               <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="220.0" />
-                              <Label fx:id="emailLabel1" minHeight="40.0" prefHeight="40.0" prefWidth="260.0" text="La fecha introducida no cumple la edad minima de 16 años" textFill="RED" wrapText="true">
+                              <Label fx:id="emailLabel1" minHeight="40.0" prefHeight="40.0" prefWidth="260.0" text="La fecha introducida no cumple la edad minima de 16 años" textFill="RED" visible="false" wrapText="true">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -203,7 +206,7 @@
                                     </PasswordField>
                                  </children>
                               </HBox>
-                              <Label fx:id="passworLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" wrapText="true">
+                              <Label fx:id="passworLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" visible="false" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="36.0" />
                                  </VBox.margin>
@@ -216,6 +219,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
+                        <Region prefHeight="0.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                         <VBox maxHeight="91.0" minHeight="60.0" prefHeight="90.0" prefWidth="800.0">
                            <children>
                               <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña">
@@ -235,7 +239,7 @@
                                     </PasswordField>
                                  </children>
                               </HBox>
-                              <Label fx:id="passwordRepLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña introducida no coincide" textFill="RED" wrapText="true">
+                              <Label fx:id="passwordRepLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña introducida no coincide" textFill="RED" visible="false" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="36.0" />
                                  </VBox.margin>
@@ -260,7 +264,7 @@
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="960.0">
@@ -297,35 +301,48 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="960.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" style="-fx-background-color: #0685bc;" text="Cancelar" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" style="-fx-background-color: #0685bc;" text="Guardar" textFill="WHITE">
-                     <HBox.margin>
-                        <Insets left="20.0" right="60.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
-                     </font>
-                  </Button>
+                  <Region prefHeight="0.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="960.0">
+                     <children>
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" style="-fx-background-color: #0685bc;" text="Cancelar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/cancelBlue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" style="-fx-background-color: #0685bc;" text="Guardar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" right="60.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/saveLogo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
    </center>

@@ -5,9 +5,15 @@
  */
 package auxiliaries;
 
+import java.io.IOException;
 import javafx.beans.property.BooleanProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -107,5 +113,20 @@ public class auxiliarMethods {
         errorLabel.visibleProperty().set(false);
         secondErrorLabel.visibleProperty().set(false);
         firstTextField.styleProperty().setValue("-fx-background-color: #C7EEFF");
+    }
+    
+    public static void loadWindow(FXMLLoader loader, String title, int width, int height) {
+        try {
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root, width, height);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("IOException at " + loader.getLocation());
+        }
     }
 }
