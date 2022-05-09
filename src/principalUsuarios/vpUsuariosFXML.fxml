@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="principalUsuarios.VpUsuariosFXMLController">
    <top>
       <VBox maxHeight="140.0" minHeight="140.0" prefHeight="140.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -237,7 +237,10 @@
                         <Insets left="60.0" top="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="40.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/problemsLogo.png" />
+                           </image></ImageView>
                      </graphic>
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
@@ -248,7 +251,10 @@
                         <Insets left="60.0" top="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="30.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/mapLogo.png" />
+                           </image></ImageView>
                      </graphic>
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />

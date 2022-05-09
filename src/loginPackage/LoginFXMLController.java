@@ -24,6 +24,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import newUserPackage.SignupPrincipalFXMLController;
@@ -50,6 +52,7 @@ public class LoginFXMLController implements Initializable {
 
     private SimpleBooleanProperty validUsername;
     private SimpleBooleanProperty correctPassword;
+    private BooleanBinding validFields;
         
     /**
      * Initializes the controller class.
@@ -64,7 +67,7 @@ public class LoginFXMLController implements Initializable {
         
         signInButton.setDisable(true);
         
-        BooleanBinding validFields = Bindings.and(validUsername, correctPassword);
+        validFields = Bindings.and(validUsername, correctPassword);
         
         nameTextfield.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -96,7 +99,6 @@ public class LoginFXMLController implements Initializable {
             passwordTextfield.opacityProperty().set(1);
             incorrectPasswdLabel.setText("La contraseña introducida es incorrecta");
             PoiUPVApp.currentUser = PoiUPVApp.navLib.getUser(nameFieldinput);
-            signInButton.setDisable(false);
         }
     }
     
@@ -110,6 +112,7 @@ public class LoginFXMLController implements Initializable {
             auxiliarMethods.manageError(incorrectPasswdLabel, passwordTextfield, correctPassword);
         } else {
             auxiliarMethods.manageCorrect(incorrectPasswdLabel, passwordTextfield, correctPassword);
+            signInButton.setDisable(false);
         }
     }
 
@@ -118,8 +121,10 @@ public class LoginFXMLController implements Initializable {
      * @param event 
      */
     @FXML
-    private void signInPressed(ActionEvent event) {
-        //Main window link
+    private void signInPressed() {        
+        //PoiUPVApp.currentUser = PoiUPVApp.navLib.loginUser(PoiUPVApp.currentUser.getNickName(), PoiUPVApp.currentUser.getPassword());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/principalUsuarios/vpUsuariosFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Menu principal", 960, 540);
         signInButton.getScene().getWindow().hide();
     }
 
@@ -129,21 +134,19 @@ public class LoginFXMLController implements Initializable {
      */
     @FXML
     private void registerPressed(ActionEvent event) {
-        //User register link
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root, 800, 480);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Nautica Signup");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            
-            registerButton.getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.out.println("IOException at signupPrincipal fxml loader");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Nautica Signup", 800, 480);
+        registerButton.getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void keyPressed(KeyEvent event) {
+        if (signInButton.disableProperty().getValue()) {
+            checkPassword();
+        } else {
+            if (event.getCode() == KeyCode.ENTER) {
+                signInPressed();
+            }
         }
     }
 }

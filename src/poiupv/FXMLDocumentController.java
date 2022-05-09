@@ -18,14 +18,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import poiupv.Poi;
@@ -56,6 +59,22 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem pin_info;
     @FXML
     private Label posicion;
+    @FXML
+    private RadioButton option1Button;
+    @FXML
+    private RadioButton option2Button;
+    @FXML
+    private RadioButton option3Button;
+    @FXML
+    private RadioButton option4Button;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button verifyButton;
+    @FXML
+    private Text mapTitle;
+    @FXML
+    private Label problemLabel;
 
     @FXML
     void zoomIn(ActionEvent event) {
@@ -157,6 +176,30 @@ public class FXMLDocumentController implements Initializable {
         mensaje.setTitle("Acerca de");
         mensaje.setHeaderText("IPC - 2022");
         mensaje.showAndWait();
+    }
+
+    @FXML
+    private void option1Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option2Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option3Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option4Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void verifyPressed(ActionEvent event) {
     }
 
 }
