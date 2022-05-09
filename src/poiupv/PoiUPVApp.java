@@ -23,6 +23,7 @@ public class PoiUPVApp extends Application {
     public static Navegacion navLib;
     public static model.User currentUser;
     
+    //prueba
     @Override
     public void start(Stage stage) throws Exception {
         try {
