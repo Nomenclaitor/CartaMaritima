@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
@@ -17,6 +18,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="540.0" prefWidth="960.0" stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.FXMLDocumentController">
    <children>
@@ -35,13 +38,83 @@
       </HBox>
       <SplitPane dividerPositions="0.4, 0.5" VBox.vgrow="ALWAYS">
          <items>
-            <VBox prefHeight="400.0" prefWidth="400.0" />
-            <ListView fx:id="map_listview" minWidth="0.0" onMouseClicked="#listClicked" prefHeight="468.0" prefWidth="80.0" />
-            <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" minWidth="0.0" onMouseMoved="#muestraPosicion" pannable="true" prefHeight="468.0" prefWidth="480.0" vbarPolicy="ALWAYS">
-               <content>
-                  <Pane minWidth="0.0" prefWidth="480.0">
+            <VBox prefHeight="400.0" prefWidth="400.0">
+               <children>
+                  <Text fill="#0685bc" strokeType="OUTSIDE" text="Enunciado del problema">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Label minHeight="210.0" minWidth="400.0" text="El día 26 de Mayo a Hrb=1200 observamos simultáneamente Demora de aguja del faro de Punta Europa Da=320º y distancia d= 5 millas. Corrección total CT=4+. Una vez situados damos rumbo a pasar a 2 millas del faro de Isla Tarifa, teniendo en cuenta que nos afecta un viento del S que nos abate 5º y hay una corriente de Rumbo Rc= 200º e Intensidad horaria Ih=2 nudos. CT=4+. La velocidad del buque es Vb= 12 nudos. A Hrb= 1330 cambiamos de rumbo y ponemos Ra=270º, CT=3+, sin viento y con una nueva corriente de Rc= 273º Ih=3 nudos.¿Situación observada a Hrb=1200?" textAlignment="JUSTIFY" wrapText="true">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <RadioButton fx:id="option1Button" mnemonicParsing="false" onAction="#option1Selected" text="Option1">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="option2Button" mnemonicParsing="false" onAction="#option2Selected" text="Option 2">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="option3Button" mnemonicParsing="false" onAction="#option3Selected" text="Option 3">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <RadioButton fx:id="option4Button" mnemonicParsing="false" onAction="#option4Selected" text="Option 4">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                  </RadioButton>
+                  <HBox prefHeight="80.0" prefWidth="200.0">
                      <children>
-                        <ImageView pickOnBounds="true">
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" text="Cancelar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" top="26.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Region HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </Region>
+                        <Button fx:id="verifyButton" mnemonicParsing="false" onAction="#verifyPressed" style="-fx-background-color: #0685bc;" text="Verificar respuesta" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="20.0" top="26.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <ListView fx:id="map_listview" minWidth="0.0" onMouseClicked="#listClicked" prefHeight="468.0" prefWidth="80.0" />
+            <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#muestraPosicion" pannable="true" vbarPolicy="ALWAYS">
+               <content>
+                  <Pane>
+                     <children>
+                        <ImageView fitHeight="1049.0" fitWidth="1798.0" pickOnBounds="true">
                            <image>
                               <Image url="@../resources/upv.jpg" />
                            </image>

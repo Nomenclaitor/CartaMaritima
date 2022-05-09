@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSelect.ProblemSelectWindowController">
+   <top>
+      <VBox maxHeight="140.0" minHeight="120.0" prefHeight="120.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="70.0">
+                     <children>
+                        <HBox prefHeight="80.0" prefWidth="200.0" />
+                        <HBox maxHeight="20.0" minHeight="50.0" minWidth="70.0" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #0685bc;" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="10000.0">
+                     <children>
+                        <HBox prefHeight="80.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER_LEFT" minHeight="50.0" minWidth="196.0" prefHeight="50.0" prefWidth="196.0" style="-fx-background-color: #0685bc;">
+                           <children>
+                              <Text fx:id="usernameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario418">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Menu principal" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="40.0" right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" width="1.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Button fx:id="userProgressButton" mnemonicParsing="false" onAction="#progressPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Progreso del usuario" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" width="1.0" />
+                              <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpPressed" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #0685bc;" text="Ayuda" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="changeuUerButton" mnemonicParsing="false" onAction="#changeUserPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Cerrar Sesión" textFill="#ff4a4a">
+                                 <HBox.margin>
+                                    <Insets left="280.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="12.0" prefWidth="200.0" style="-fx-background-color: #0685bc;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="240.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="460.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Label text="El nombre de usuario no se puede cambiar">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox fx:id="nameTextField" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="nameField" minWidth="260.0" prefHeight="25.0" prefWidth="260.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo Electrónico">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="emailField" minWidth="260.0" prefHeight="25.0" prefWidth="260.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TextField>
+                              <Label fx:id="emailLabel" minHeight="40.0" prefHeight="20.0" text="El correo tiene un formato incorrecto" textFill="RED" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de nacimiento">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="220.0" />
+                              <Label fx:id="emailLabel1" minHeight="40.0" prefHeight="40.0" prefWidth="260.0" text="La fecha introducida no cumple la edad minima de 16 años" textFill="RED" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="250.0" prefWidth="460.0">
+                     <children>
+                        <VBox maxHeight="140.0" minHeight="80.0" prefHeight="140.0" prefWidth="460.0">
+                           <children>
+                              <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+                                 <VBox.margin>
+                                    <Insets left="16.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Label minHeight="40.0" prefHeight="48.0" prefWidth="440.0" text="La contraseña debe de ser una combinación entre 8 y 15 numeros y letras en mayuscula y minuscula, sin espacios en blanco y con al menos un caracter especial" wrapText="true">
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="780.0">
+                                 <children>
+                                    <PasswordField fx:id="passwordField" minWidth="250.0" prefHeight="25.0" prefWidth="250.0" promptText="Introduzca una contraseña">
+                                       <HBox.margin>
+                                          <Insets left="36.0" />
+                                       </HBox.margin>
+                                    </PasswordField>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="passworLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets left="36.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox maxHeight="91.0" minHeight="60.0" prefHeight="90.0" prefWidth="800.0">
+                           <children>
+                              <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="780.0">
+                                 <children>
+                                    <PasswordField fx:id="PasswordRepField" minWidth="250.0" prefHeight="25.0" prefWidth="250.0" promptText="Repita la contraseña introducida arriba">
+                                       <HBox.margin>
+                                          <Insets left="36.0" />
+                                       </HBox.margin>
+                                    </PasswordField>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="passwordRepLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña introducida no coincide" textFill="RED" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets left="36.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de perfil">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Text>
+            <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="960.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Foto perfil 1" />
+                  <Button mnemonicParsing="false" text="Foto perfil 2" />
+                  <Button mnemonicParsing="false" text="Foto perfil 3" />
+                  <Button mnemonicParsing="false" text="Foto perfil 4" />
+                  <Button mnemonicParsing="false" text="Foto perfil 5" />
+                  <ImageView fx:id="defaultPic6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgData/85498161615209203_1636332751.jpg" />
+                     </image>
+                  </ImageView>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox minWidth="205.0" prefHeight="205.0" prefWidth="180.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <Button fx:id="fileSelectButton" mnemonicParsing="false" onAction="#fileSelectPressed" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-color: #0685bc; -fx-border-radius: 10; -fx-border-width: 2;" text="Avatar personalizada" textFill="#0685bc">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label prefHeight="40.0" prefWidth="205.0" text="Elija una foto en su ordenador" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="960.0">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" style="-fx-background-color: #0685bc;" text="Cancelar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" style="-fx-background-color: #0685bc;" text="Guardar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" right="60.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

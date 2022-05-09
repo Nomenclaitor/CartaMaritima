@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSelect.ProblemSelectWindowController">
+   <top>
+      <VBox maxHeight="140.0" minHeight="120.0" prefHeight="120.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
+            <HBox alignment="CENTER_LEFT" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="70.0">
+                     <children>
+                        <HBox prefHeight="80.0" prefWidth="200.0" />
+                        <HBox maxHeight="20.0" minHeight="50.0" minWidth="70.0" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: #0685bc;" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="10000.0">
+                     <children>
+                        <HBox prefHeight="80.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER_LEFT" minHeight="50.0" minWidth="196.0" prefHeight="50.0" prefWidth="196.0" style="-fx-background-color: #0685bc;">
+                           <children>
+                              <Text fx:id="usernameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario418">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="datamodButton" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Modificar datos" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="40.0" right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" width="1.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Rectangle>
+                              <Button fx:id="userProgressButton" mnemonicParsing="false" onAction="#progressPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Progreso del usuario" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" width="1.0" />
+                              <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpPressed" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #0685bc;" text="Ayuda" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="changeuUerButton" mnemonicParsing="false" onAction="#changeUserPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Cerrar Sesión" textFill="#ff4a4a">
+                                 <HBox.margin>
+                                    <Insets left="280.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="12.0" prefWidth="200.0" style="-fx-background-color: #0685bc;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" maxHeight="60.0" prefHeight="60.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: #0685bc;" text="Atrás" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/flechaAIzq.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="openRandomBUtotn" mnemonicParsing="false" onAction="#openRandomPressed" style="-fx-background-color: #FFFFFF;" text="Problema aleatorio" textFill="#0685bc">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="openSelectedButton" mnemonicParsing="false" onAction="#openSelectedPressed" style="-fx-background-color: #FFFFFF;" text="Realizar problema seleccionado" textFill="#0685bc">
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="330.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="problemListView" prefHeight="200.0" prefWidth="480.0">
+                     <HBox.margin>
+                        <Insets left="10.0" right="5.0" />
+                     </HBox.margin>
+                  </ListView>
+                  <VBox prefHeight="200.0" prefWidth="480.0">
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label fx:id="problemTextLabel" prefHeight="160.0" prefWidth="480.0" text="Enunciado problema" />
+                        <RadioButton fx:id="option1Selector" disable="true" mnemonicParsing="false" text="Option 1">
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="option2Selector" disable="true" mnemonicParsing="false" text="Option 2">
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="option3Selector" disable="true" mnemonicParsing="false" text="Option 3">
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="option4Selection" disable="true" mnemonicParsing="false" text="OPtion 4">
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

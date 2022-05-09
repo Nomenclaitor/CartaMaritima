@@ -75,7 +75,7 @@
    <center>
       <VBox prefHeight="250.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox maxHeight="222.0" minHeight="60.0" prefHeight="222.0" prefWidth="800.0">
+            <VBox maxHeight="268.0" minHeight="60.0" prefHeight="280.0" prefWidth="800.0">
                <children>
                   <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Foto de perfil">
                      <VBox.margin>
@@ -121,12 +121,32 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="780.0">
+                     <children>
+                        <Button fx:id="fileSelectButton" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Elegir desde su ordenador" textFill="#0685bc">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                        <Label fx:id="filePathLabel">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="20.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
             </VBox>
          </children>

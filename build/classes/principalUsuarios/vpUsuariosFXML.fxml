@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -74,9 +75,10 @@
                                     <Font name="Arial Rounded MT Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="changeUserButton" mnemonicParsing="false" onAction="#closeSessionPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Cerrar Sesión" textFill="#ff4a4a">
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button fx:id="changeUserButton" mnemonicParsing="false" onAction="#closeSessionPressed" style="-fx-background-color: #0685bc;" text="Cerrar Sesión" textFill="#ff4a4a">
                                  <HBox.margin>
-                                    <Insets left="160.0" />
+                                    <Insets left="5.0" right="20.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="14.0" />
@@ -146,7 +148,7 @@
                         <Insets left="40.0" />
                      </VBox.margin>
                      <children>
-                        <Label fx:id="clockLabel" prefHeight="96.0" prefWidth="253.0" text="hora:local" textAlignment="CENTER">
+                        <Label fx:id="clockLabel" prefHeight="100.0" prefWidth="250.0" text="hora:local" textAlignment="CENTER">
                            <font>
                               <Font size="42.0" />
                            </font>
