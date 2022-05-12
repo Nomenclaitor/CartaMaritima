@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -16,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSelect.ProblemSelectWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" stylesheets="@../styles/appStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSelect.ProblemSelectWindowController">
    <top>
       <VBox maxHeight="140.0" minHeight="120.0" prefHeight="120.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -40,7 +47,7 @@
                                     <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Menu principal" textFill="WHITE">
+                              <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="45.0" text="Menu principal" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="40.0" right="5.0" />
                                  </HBox.margin>
@@ -53,7 +60,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Rectangle>
-                              <Button fx:id="userProgressButton" mnemonicParsing="false" onAction="#progressPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Progreso del usuario" textFill="WHITE">
+                              <Button fx:id="userProgressButton" mnemonicParsing="false" onAction="#progressPressed" prefHeight="45.0" text="Progreso del usuario" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="5.0" right="5.0" />
                                  </HBox.margin>
@@ -62,7 +69,7 @@
                                  </font>
                               </Button>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5" width="1.0" />
-                              <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpPressed" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #0685bc;" text="Ayuda" textFill="WHITE">
+                              <Button fx:id="helpButton" mnemonicParsing="false" onAction="#helpPressed" prefHeight="45.0" prefWidth="60.0" text="Ayuda" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -285,7 +292,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="fileSelectButton" mnemonicParsing="false" onAction="#fileSelectPressed" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-color: #0685bc; -fx-border-radius: 10; -fx-border-width: 2;" text="Avatar personalizada" textFill="#0685bc">
+                        <Button id="btn_white" fx:id="fileSelectButton" mnemonicParsing="false" onAction="#fileSelectPressed" prefHeight="42.0" prefWidth="204.0" text="Avatar personalizada" textFill="#0685bc">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
@@ -306,7 +313,7 @@
                   <Region prefHeight="0.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="960.0">
                      <children>
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" style="-fx-background-color: #0685bc;" text="Cancelar" textFill="WHITE">
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" text="Cancelar" textFill="WHITE">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -321,7 +328,7 @@
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" style="-fx-background-color: #0685bc;" text="Guardar" textFill="WHITE">
+                        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" text="Guardar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="20.0" right="60.0" />
                            </HBox.margin>

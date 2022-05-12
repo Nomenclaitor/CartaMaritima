@@ -5,6 +5,7 @@
  */
 package dataModPackage;
 
+import auxiliaries.auxiliarMethods;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -16,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -35,8 +38,12 @@ public class DataModFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    protected static String email;
+    protected static LocalDate birthday;
     private SimpleBooleanProperty validEmail;
     private SimpleBooleanProperty validBirthday;
+    private SimpleBooleanProperty validPassword;
+    private SimpleBooleanProperty passwordRepCorrect;
     
     @FXML
     private Label passwordRepLabel;
@@ -147,23 +154,53 @@ public class DataModFXMLController implements Initializable {
 
         validEmail = new SimpleBooleanProperty();
         validBirthday = new SimpleBooleanProperty();
-
+        validPassword = new SimpleBooleanProperty();
+        passwordRepCorrect = new SimpleBooleanProperty();
+        
         validEmail.setValue(Boolean.FALSE);
         validBirthday.setValue(Boolean.FALSE);
+        validPassword.setValue(Boolean.FALSE);
+        passwordRepCorrect.setValue(Boolean.FALSE);
 
         
 
         emailField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
-               // importar checkEmail
+                checkEmail();
             }
         });
 
         datePicker.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
-                //checkBirthday();
+                checkBirthday();
             }
         });
+        
+        
     }
-
+    // methods
+        
+    private void checkEmail() {
+    String inputEmail = emailField.textProperty().getValueSafe();
+    if (!model.User.checkEmail(inputEmail)) {
+        auxiliarMethods.manageError(emailLabel, emailField, validEmail);
+        } else {
+            auxiliarMethods.manageCorrect(emailLabel, emailField, validEmail);
+            email = inputEmail;
+        }
+    }
+    
+    private void checkBirthday() {
+        LocalDate inputBirthday = datePicker.getValue();
+        if (Period.between(inputBirthday, LocalDate.now()).getYears() < 16) {
+            validBirthday.setValue(Boolean.FALSE);
+            //birthdayLabel.visibleProperty().set(true);
+            datePicker.styleProperty().setValue("-fx-background-color: #FCE5E0");
+        } else {
+            validBirthday.setValue(Boolean.TRUE);
+            //birthdayLabel.visibleProperty().set(false);
+            datePicker.styleProperty().setValue("-fx-background-color: #C2FFDA");
+            birthday = inputBirthday;
+        }
+    }
 }

@@ -77,7 +77,9 @@ public class VpUsuariosFXMLController implements Initializable {
 
     @FXML
     private void modifyPressed(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/dataModPackage/dataModFXML.fxml"));
+        URL fxmlLocation = getClass().getResource("/dataModPackage/dataModFXML.fxml");
+        System.out.println(fxmlLocation);
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
         auxiliarMethods.loadWindow(loader, "Modificar datos del usuario", 960, 540);
         datamodButton.getScene().getWindow().hide();
     }

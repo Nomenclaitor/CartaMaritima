@@ -10,8 +10,28 @@ and open the template in the editor.
 .button {
      -fx-background-color:#0685BC
 }
-.button:hover {
-    -fx-background-color:#0574a3
 
+#btn_white {
+    -fx-background-color:white;
+    -fx-text-fill: #0685BC;
+    -fx-border-color: #0685BC;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.button:hover {
+    -fx-background-color:#0574a3;
+    -fx-text-fill: white;  
+}
+
+#btn_white:hover {
+    -fx-background-color:white;
+    -fx-text-fill: #0574a3 ;
+    -fx-text-fill:bold;
+    -fx-border-color: #0574a3;
+    -fx-border-width: 4;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
