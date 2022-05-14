@@ -21,6 +21,9 @@ import javafx.scene.text.Text;
 import auxiliaries.ConcurrentClock;
 import auxiliaries.auxiliarMethods;
 import java.io.IOException;
+import javafx.scene.chart.BarChart;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import poiupv.PoiUPVApp;
 /**
  * FXML Controller class
@@ -36,16 +39,11 @@ public class VpUsuariosFXMLController implements Initializable {
     @FXML
     private Button datamodButton;
     @FXML
-    private Button userprogressButton;
-    @FXML
     private Button helpButton;
     @FXML
     private Button changeUserButton;
-    @FXML
     private Label emailLabel;
-    @FXML
     private Label birthdayLabel;
-    @FXML
     private Label clockLabel;
     @FXML
     private Label correctLabel;
@@ -57,10 +55,20 @@ public class VpUsuariosFXMLController implements Initializable {
     private Label failureRateLabel;
     @FXML
     private Label gradeLabel;
-    @FXML
     private Button problemsWindowButton;
-    @FXML
     private Button showMapButton;
+    @FXML
+    private Button mainMenuButton;
+    @FXML
+    private BarChart<?, ?> sessionChart;
+    @FXML
+    private DatePicker lowerLimitPicker;
+    @FXML
+    private DatePicker upperLimitPicker;
+    @FXML
+    private Button showDataButton;
+    @FXML
+    private ListView<?> sessionList;
 
     /**
      * Initializes the controller class.
@@ -82,9 +90,6 @@ public class VpUsuariosFXMLController implements Initializable {
         datamodButton.getScene().getWindow().hide();
     }
 
-    @FXML
-    private void progressPressed(ActionEvent event) {
-    }
 
     @FXML
     private void helpPressed(ActionEvent event) {
@@ -94,25 +99,18 @@ public class VpUsuariosFXMLController implements Initializable {
     private void closeSessionPressed(ActionEvent event) {
         //Añadir sesion antes de cerrar sesion
         //Por testear
-        try {
-            PoiUPVApp.currentUser.addSession(PoiUPVApp.currentSession);
-        } catch (NavegacionDAOException e) {
-            System.out.println("Error saving current user session");
-        }
         PoiUPVApp.currentUser = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginPackage/loginFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Login", 800, 480);
         changeUserButton.getScene().getWindow().hide();
     }
 
-    @FXML
     private void problemsPressed(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/problemSelect/problemSelectWindow.fxml"));
         auxiliarMethods.loadWindow(loader, "Seleccion de problemas", 960, 540);
         problemsWindowButton.getScene().getWindow().hide();
     }
 
-    @FXML
     private void showMapPressed(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/poiupv/FXMLDocument.fxml"));
         auxiliarMethods.loadWindow(loader, "Mapa en blanco", 960, 540);
@@ -126,5 +124,13 @@ public class VpUsuariosFXMLController implements Initializable {
         threadedClock.setDaemon(true);
         threadedClock.start();
         clockLabel.textProperty().bind(clock.messageProperty());
+    }
+
+    @FXML
+    private void mainMenuPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void showData(ActionEvent event) {
     }
 }

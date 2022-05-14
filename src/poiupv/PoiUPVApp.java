@@ -37,7 +37,7 @@ public class PoiUPVApp extends Application {
         //currentUser = navLib.getUser("nombreTest");
         //currentUser.setAvatar(new Image("/imgData/85498161615209203_1636332751.jpg"));
         //currentUser.setBirthdate(LocalDate.now());
-        Parent root = FXMLLoader.load(getClass().getResource("../loginPackage/loginFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/loginPackage/loginFXML.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("Nautica418");

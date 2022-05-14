@@ -64,9 +64,7 @@ public class LoginFXMLController implements Initializable {
         
         correctPassword.setValue(Boolean.FALSE);
         validUsername.setValue(Boolean.FALSE);
-        
-        signInButton.setDisable(true);
-        
+                
         validFields = Bindings.and(validUsername, correctPassword);
         
         nameTextfield.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -112,7 +110,6 @@ public class LoginFXMLController implements Initializable {
             auxiliarMethods.manageError(incorrectPasswdLabel, passwordTextfield, correctPassword);
         } else {
             auxiliarMethods.manageCorrect(incorrectPasswdLabel, passwordTextfield, correctPassword);
-            signInButton.setDisable(false);
         }
     }
 
@@ -121,11 +118,17 @@ public class LoginFXMLController implements Initializable {
      * @param event 
      */
     @FXML
-    private void signInPressed() {        
-        //PoiUPVApp.currentUser = PoiUPVApp.navLib.loginUser(PoiUPVApp.currentUser.getNickName(), PoiUPVApp.currentUser.getPassword());
+    private void signInPressed(ActionEvent event) {     
+        if (validUsername.getValue() == true && correctPassword.getValue() == true) {
+        PoiUPVApp.currentUser = PoiUPVApp.navLib.loginUser(PoiUPVApp.currentUser.getNickName(), PoiUPVApp.currentUser.getPassword());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/principalUsuarios/vpUsuariosFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Menu principal", 960, 540);
         signInButton.getScene().getWindow().hide();
+        } else if (validUsername.getValue() == false) {
+            auxiliarMethods.manageError(name404Label, nameTextfield, validUsername);
+        } else if (correctPassword.getValue() == false) {
+            auxiliarMethods.manageError(incorrectPasswdLabel, passwordTextfield, correctPassword);
+        }
     }
 
     /**
@@ -140,12 +143,13 @@ public class LoginFXMLController implements Initializable {
     }
 
     @FXML
+    //Cant signin, must press the button with the mouse
     private void keyPressed(KeyEvent event) {
-        if (signInButton.disableProperty().getValue()) {
-            checkPassword();
-        } else {
-            if (event.getCode() == KeyCode.ENTER) {
-                signInPressed();
+        if (event.getCode() == KeyCode.ENTER) {
+            if(nameTextfield.focusedProperty().getValue() == true && validUsername.getValue() == true) {
+                passwordTextfield.setFocusTraversable(true);
+            } else if (passwordTextfield.focusedProperty().getValue() == true && validFields.getValue() == true) {
+                signInButton.setFocusTraversable(true);
             }
         }
     }
