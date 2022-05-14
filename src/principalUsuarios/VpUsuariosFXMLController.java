@@ -21,9 +21,15 @@ import javafx.scene.text.Text;
 import auxiliaries.ConcurrentClock;
 import auxiliaries.auxiliarMethods;
 import java.io.IOException;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import poiupv.PoiUPVApp;
 /**
  * FXML Controller class
@@ -42,8 +48,11 @@ public class VpUsuariosFXMLController implements Initializable {
     private Button helpButton;
     @FXML
     private Button changeUserButton;
+    @FXML
     private Label emailLabel;
+    @FXML
     private Label birthdayLabel;
+    @FXML
     private Label clockLabel;
     @FXML
     private Label correctLabel;
@@ -55,20 +64,13 @@ public class VpUsuariosFXMLController implements Initializable {
     private Label failureRateLabel;
     @FXML
     private Label gradeLabel;
+    @FXML
     private Button problemsWindowButton;
+    @FXML
     private Button showMapButton;
     @FXML
-    private Button mainMenuButton;
-    @FXML
-    private BarChart<?, ?> sessionChart;
-    @FXML
-    private DatePicker lowerLimitPicker;
-    @FXML
-    private DatePicker upperLimitPicker;
-    @FXML
-    private Button showDataButton;
-    @FXML
-    private ListView<?> sessionList;
+    private Button userprogressButton;
+    
 
     /**
      * Initializes the controller class.
@@ -100,20 +102,36 @@ public class VpUsuariosFXMLController implements Initializable {
         //Añadir sesion antes de cerrar sesion
         //Por testear
         PoiUPVApp.currentUser = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginPackage/loginFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginPackage/loginFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Login", 800, 480);
         changeUserButton.getScene().getWindow().hide();
     }
 
+    @FXML
     private void problemsPressed(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/problemSelect/problemSelectWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../problemSelect/problemSelectWindow.fxml"));
         auxiliarMethods.loadWindow(loader, "Seleccion de problemas", 960, 540);
         problemsWindowButton.getScene().getWindow().hide();
     }
 
+    @FXML
     private void showMapPressed(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/poiupv/FXMLDocument.fxml"));
-        auxiliarMethods.loadWindow(loader, "Mapa en blanco", 960, 540);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../poiupv/FXMLDocument.fxml"));
+            Parent root = loader.load();
+            poiupv.FXMLDocumentController mapController = loader.getController();
+            
+            mapController.setBlanckMap();
+            
+            Scene scene = new Scene(root, 960, 540);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Mapa en blanco");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("IOException loading blanck map");
+        }
         showMapButton.getScene().getWindow().hide();
     }
     
@@ -127,10 +145,12 @@ public class VpUsuariosFXMLController implements Initializable {
     }
 
     @FXML
-    private void mainMenuPressed(ActionEvent event) {
+    private void progressPressed(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../userProgressPackage/userProgressFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Progreso del usuario", 960, 540);
+        userprogressButton.getScene().getWindow().hide();
     }
 
-    @FXML
-    private void showData(ActionEvent event) {
-    }
+
+
 }

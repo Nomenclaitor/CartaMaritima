@@ -53,4 +53,12 @@ public class PoiUPVApp extends Application {
         launch(args);
     }
     
+    public static void updateSession() {
+        
+    }
+    
+    public static void saveSession() {
+        
+    }
+    
 }

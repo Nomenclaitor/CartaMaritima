@@ -121,7 +121,7 @@ public class LoginFXMLController implements Initializable {
     private void signInPressed(ActionEvent event) {     
         if (validUsername.getValue() == true && correctPassword.getValue() == true) {
         PoiUPVApp.currentUser = PoiUPVApp.navLib.loginUser(PoiUPVApp.currentUser.getNickName(), PoiUPVApp.currentUser.getPassword());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/principalUsuarios/vpUsuariosFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../principalUsuarios/vpUsuariosFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Menu principal", 960, 540);
         signInButton.getScene().getWindow().hide();
         } else if (validUsername.getValue() == false) {

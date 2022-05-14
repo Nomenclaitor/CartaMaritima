@@ -82,7 +82,7 @@
                               <Insets left="20.0" top="26.0" />
                            </HBox.margin>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="cancelButtonImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/cancelBlue.png" />
                                  </image></ImageView>
@@ -121,7 +121,7 @@
                <children>
                   <HBox prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="lineButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#linePressed" style="-fx-background-color: #FFFFFF; -fx-border-color: https://www.habitaclia.com/alquiler-piso-l_amistat-valencia-i28825000002496.htm?pag=1&amp;hab=3&amp;pmax=1200&amp;coddists=200&amp;codzonas=203,201,202&amp;f=&amp;geo=d&amp;from=list&amp;lo=55;" HBox.hgrow="ALWAYS">
+                        <Button fx:id="lineButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#linePressed" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -181,8 +181,8 @@
                   </HBox>
                   <HBox prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <ColorPicker fx:id="colorPicker" maxWidth="1.7976931348623157E308" prefHeight="40.0" />
-                        <Button fx:id="fillerButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#changeFiller" HBox.hgrow="ALWAYS">
+                        <ColorPicker fx:id="colorPicker" maxWidth="1.7976931348623157E308" prefHeight="40.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="fillerButton" maxHeight="40.0" maxWidth="80.0" mnemonicParsing="false" onAction="#changeFiller" HBox.hgrow="ALWAYS">
                            <graphic>
                               <Circle accessibleRole="BUTTON" fill="#0685bc" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
                            </graphic></Button>
@@ -217,7 +217,7 @@
                               <String fx:value="map-pin" />
                            </styleClass>
                         </MenuButton>
-                        <ImageView fx:id="anglePortractor" fitHeight="240.0" fitWidth="240.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="anglePortractor" fitHeight="240.0" fitWidth="240.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@../resources/transportador.png" />
                            </image>
