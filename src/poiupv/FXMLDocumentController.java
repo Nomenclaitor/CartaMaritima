@@ -5,6 +5,8 @@
  */
 package poiupv;
 
+import java.util.Optional;
+import auxiliaries.auxiliarMethods;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,19 +17,28 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Navegacion;
 import poiupv.Poi;
 
 /**
@@ -45,8 +56,6 @@ public class FXMLDocumentController implements Initializable {
     private Group zoomGroup;
 
     @FXML
-    private ListView<Poi> map_listview;
-    @FXML
     private ScrollPane map_scrollpane;
     @FXML
     private Slider zoom_slider;
@@ -56,7 +65,53 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem pin_info;
     @FXML
     private Label posicion;
+    @FXML
+    private RadioButton option1Button;
+    @FXML
+    private RadioButton option2Button;
+    @FXML
+    private RadioButton option3Button;
+    @FXML
+    private RadioButton option4Button;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button verifyButton;
+    @FXML
+    private Text mapTitle;
+    @FXML
+    private Label problemLabel;
+    @FXML
+    private Button lineButton;
+    @FXML
+    private Button arcButton;
+    @FXML
+    private Button pointButton;
+    @FXML
+    private Button textButton;
+    @FXML
+    private Button cursorButton;
+    @FXML
+    private Button anglerToggler;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private Button fillerButton;
+    @FXML
+    private Button incSizeButton;
+    @FXML
+    private Slider sizeSlider;
+    @FXML
+    private Button decSizeButton;
+    @FXML
+    private ImageView anglePortractor;
 
+    private boolean fromMainMenu = false;
+    
+    private Alert exitAlert = new Alert(AlertType.CONFIRMATION);
+    @FXML
+    private ImageView cancelButtonImage;
+    
     @FXML
     void zoomIn(ActionEvent event) {
         //================================================
@@ -88,36 +143,9 @@ public class FXMLDocumentController implements Initializable {
         map_scrollpane.setVvalue(scrollV);
     }
 
-    @FXML
-    void listClicked(MouseEvent event) {
-        Poi itemSelected = map_listview.getSelectionModel().getSelectedItem();
-
-        // Animación del scroll hasta la posicion del item seleccionado
-        double mapWidth = zoomGroup.getBoundsInLocal().getWidth();
-        double mapHeight = zoomGroup.getBoundsInLocal().getHeight();
-        double scrollH = itemSelected.getPosition().getX() / mapWidth;
-        double scrollV = itemSelected.getPosition().getY() / mapHeight;
-        final Timeline timeline = new Timeline();
-        final KeyValue kv1 = new KeyValue(map_scrollpane.hvalueProperty(), scrollH);
-        final KeyValue kv2 = new KeyValue(map_scrollpane.vvalueProperty(), scrollV);
-        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv1, kv2);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-
-        // movemos el objto map_pin hasta la posicion del POI
-        double pinW = map_pin.getBoundsInLocal().getWidth();
-        double pinH = map_pin.getBoundsInLocal().getHeight();
-        map_pin.setLayoutX(itemSelected.getPosition().getX());
-        map_pin.setLayoutY(itemSelected.getPosition().getY());
-        pin_info.setText(itemSelected.getDescription());
-        map_pin.setVisible(true);
-    }
-
     private void initData() {
         hm.put("2F", new Poi("2F", "Edificion del DSIC", 325, 225));
         hm.put("Agora", new Poi("Agora", "Agora", 600, 360));
-        map_listview.getItems().add(hm.get("2F"));
-        map_listview.getItems().add(hm.get("Agora"));
     }
 
     @Override
@@ -148,17 +176,134 @@ public class FXMLDocumentController implements Initializable {
                 + "         X: " + (int) event.getX() + ",          Y: " + (int) event.getY());
     }
 
-    @FXML
     private void cerrarAplicacion(ActionEvent event) {
         ((Stage)zoom_slider.getScene().getWindow()).close();
     }
 
-    @FXML
     private void acercaDe(ActionEvent event) {
         Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
         mensaje.setTitle("Acerca de");
         mensaje.setHeaderText("IPC - 2022");
         mensaje.showAndWait();
+    }
+
+    @FXML
+    private void option1Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option2Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option3Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void option4Selected(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelPressed(ActionEvent event) {
+        if (fromMainMenu) {
+            exitAlert.setHeaderText("Está seguro de querer salir al menu principal?");
+            exitAlert.setContentText("Todo el progeso en el mapa será borrado");
+            Optional<ButtonType> result = exitAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+            toMainMenu();
+            }
+        } else {
+            exitAlert.setHeaderText("Está seguro de querer salir al menu de selección de problemas?");
+            exitAlert.setContentText("Todo el progeso en el mapa será borrado y el problema dado como fallido");
+            Optional<ButtonType> result = exitAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+            toProblemSelector();
+            }
+        }
+    }
+
+    @FXML
+    private void verifyPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void linePressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void arcPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void pointPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void textPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void cursorPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void anglerPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void changeFiller(ActionEvent event) {
+    }
+
+    @FXML
+    private void incSize(ActionEvent event) {
+    }
+
+    @FXML
+    private void decSize(ActionEvent event) {
+    }
+    
+    //Untested
+    public void setBlanckMap() {
+        fromMainMenu = true;
+        cancelButtonImage.setImage(new Image("/imgData/arrowLeftBlue.png"));
+        cancelButton.setText("Menu principal");
+        mapTitle.setText("Mapa en blanco");
+        problemLabel.setText("Mapa en blanco para practicas");
+        option1Button.setVisible(false);
+        option2Button.setVisible(false);
+        option3Button.setVisible(false);
+        option4Button.setVisible(false);
+    }
+    
+    //Untested
+    public void setTest(model.Problem problem) {
+        fromMainMenu = false;
+        cancelButtonImage.setImage(new Image("/imgData/cancelBlue.png"));
+        cancelButton.setText("Cancelar");
+        mapTitle.setText("Enunciado del problema");
+        problemLabel.setText(problem.getText());
+        List<model.Answer> answers = problem.getAnswers();
+        option1Button.setText(answers.get(0).getText());
+        option2Button.setText(answers.get(1).getText());
+        option3Button.setText(answers.get(2).getText());
+        option4Button.setText(answers.get(3).getText());
+        option1Button.setVisible(true);
+        option2Button.setVisible(true);
+        option3Button.setVisible(true);
+        option4Button.setVisible(true);
+    }
+    
+    //Untested
+    private void toMainMenu() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../principalUsuarios/vpUsuariosFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Menu Principal", 960, 540);
+        cancelButton.getScene().getWindow().hide();
+    }
+    
+    //Untested
+    private void toProblemSelector() {
+        //Save problem answer (failed)
+        cancelButton.getScene().getWindow().hide();
     }
 
 }

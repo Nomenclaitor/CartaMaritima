@@ -24,6 +24,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import newUserPackage.SignupPrincipalFXMLController;
@@ -50,6 +52,7 @@ public class LoginFXMLController implements Initializable {
 
     private SimpleBooleanProperty validUsername;
     private SimpleBooleanProperty correctPassword;
+    private BooleanBinding validFields;
         
     /**
      * Initializes the controller class.
@@ -61,8 +64,8 @@ public class LoginFXMLController implements Initializable {
         
         correctPassword.setValue(Boolean.FALSE);
         validUsername.setValue(Boolean.FALSE);
-        
-        BooleanBinding validFields = Bindings.and(validUsername, correctPassword);
+                
+        validFields = Bindings.and(validUsername, correctPassword);
         
         nameTextfield.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -75,23 +78,29 @@ public class LoginFXMLController implements Initializable {
                 checkPassword();
             }
         });
-        
-        
-        
-        signInButton.disableProperty().bind(Bindings.not(validFields));
     }    
     
+    /**
+     * Checks if the username exists in the database
+     * The password field wont unlock until a correct username has been introduced
+     */
     // checkname structure from Signup project
     private void checkName() {
         String nameFieldinput = nameTextfield.textProperty().getValueSafe();
         if (!PoiUPVApp.navLib.exitsNickName(nameFieldinput)) {
-            auxiliarMethods.manageError(name404Label, nameTextfield, validUsername);
+            auxiliarMethods.manageError(name404Label, incorrectPasswdLabel, nameTextfield, validUsername);
+            incorrectPasswdLabel.setText("Introduzca un nombre de usuario valido");
         } else {
-            auxiliarMethods.manageCorrect(name404Label, nameTextfield, validUsername);
+            auxiliarMethods.manageCorrect(name404Label, incorrectPasswdLabel, nameTextfield, validUsername);
+            incorrectPasswdLabel.setText("La contraseña introducida es incorrecta");
             PoiUPVApp.currentUser = PoiUPVApp.navLib.getUser(nameFieldinput);
         }
     }
     
+    /**
+     * Checks if the password input matches the password of the provided
+     * username
+     */
     // checkpassword structure from signup project
     private void checkPassword() {
         if (!PoiUPVApp.currentUser.getPassword().equals((passwordTextfield.textProperty().getValueSafe()))) {
@@ -99,31 +108,46 @@ public class LoginFXMLController implements Initializable {
         } else {
             auxiliarMethods.manageCorrect(incorrectPasswdLabel, passwordTextfield, correctPassword);
         }
-    }    
+    }
 
+    /**
+     * Sign-in button controller
+     * @param event 
+     */
     @FXML
-    private void signInPressed(ActionEvent event) {
-        //Main window link
+    private void signInPressed(ActionEvent event) {     
+        if (validUsername.getValue() == true && correctPassword.getValue() == true) {
+        PoiUPVApp.currentUser = PoiUPVApp.navLib.loginUser(PoiUPVApp.currentUser.getNickName(), PoiUPVApp.currentUser.getPassword());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../principalUsuarios/vpUsuariosFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Menu principal", 960, 540);
         signInButton.getScene().getWindow().hide();
+        } else if (validUsername.getValue() == false) {
+            auxiliarMethods.manageError(name404Label, nameTextfield, validUsername);
+        } else if (correctPassword.getValue() == false) {
+            auxiliarMethods.manageError(incorrectPasswdLabel, passwordTextfield, correctPassword);
+        }
+    }
+
+    /**
+     * Register button controller
+     * @param event 
+     */
+    @FXML
+    private void registerPressed(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
+        auxiliarMethods.loadWindow(loader, "Nautica Signup", 800, 480);
+        registerButton.getScene().getWindow().hide();
     }
 
     @FXML
-    private void registerPressed(ActionEvent event) {
-        //User register link
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root, 800, 480);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Nautica Signup");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            
-            registerButton.getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.out.println("IOException at signupPrincipal fxml loader");
+    //Cant signin, must press the button with the mouse
+    private void keyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            if(nameTextfield.focusedProperty().getValue() == true && validUsername.getValue() == true) {
+                passwordTextfield.setFocusTraversable(true);
+            } else if (passwordTextfield.focusedProperty().getValue() == true && validFields.getValue() == true) {
+                signInButton.setFocusTraversable(true);
+            }
         }
     }
 }

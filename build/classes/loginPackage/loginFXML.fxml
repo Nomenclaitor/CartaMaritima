@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginPackage.LoginFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loginPackage.LoginFXMLController">
    <top>
       <VBox prefHeight="134.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,9 +29,9 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="120.0" prefWidth="800.0">
+            <VBox prefHeight="120.0">
                <children>
-                  <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuaro">
+                  <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuario">
                      <VBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </VBox.margin>
@@ -75,7 +75,7 @@
                               <Insets left="40.0" />
                            </HBox.margin>
                         </PasswordField>
-                        <Label fx:id="incorrectPasswdLabel" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="138.0" text="Contraseña incorreta" textFill="RED" visible="false" wrapText="true">
+                        <Label fx:id="incorrectPasswdLabel" minHeight="40.0" minWidth="340.0" prefHeight="40.0" prefWidth="340.0" text="La contraseña introducida es incorrecta" textFill="RED" visible="false" wrapText="true">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
@@ -93,7 +93,7 @@
    <bottom>
       <VBox prefHeight="85.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="800.0">
+            <HBox alignment="CENTER_RIGHT" maxHeight="40.0" minHeight="40.0" prefHeight="40.0">
                <children>
                   <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInPressed" style="-fx-background-color: #0685BC;" text="Entrar" textFill="WHITE">
                      <HBox.margin>

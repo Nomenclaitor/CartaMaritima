@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
@@ -26,6 +27,10 @@ public class SignupProfilePictureController implements Initializable {
     private Button createAccountButton;
     @FXML
     private ImageView defaultPic6;
+    @FXML
+    private Button fileSelectButton;
+    @FXML
+    private Label filePathLabel;
 
     /**
      * Initializes the controller class.

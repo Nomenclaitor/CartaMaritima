@@ -30,7 +30,7 @@
    <center>
       <VBox prefHeight="250.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox maxHeight="70.0" minHeight="60.0" prefHeight="60.0" prefWidth="800.0">
+            <VBox maxHeight="96.0" minHeight="100.0" prefHeight="100.0" prefWidth="800.0">
                <children>
                   <Text fill="#0685bc" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de usuaro">
                      <VBox.margin>
@@ -41,6 +41,11 @@
                      </font>
                   </Text>
                   <Label text="El nombre de usuario no se puede cambiar, asegurese de que es el correcto">
+                     <VBox.margin>
+                        <Insets left="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="El nombre debe de ser entre 6 y 15 caracteres, pudiendo usar numeros, letras, - y _">
                      <VBox.margin>
                         <Insets left="40.0" />
                      </VBox.margin>
@@ -93,7 +98,7 @@
                   <Insets left="20.0" />
                </padding>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </VBox>
             <VBox maxHeight="70.0" minHeight="60.0" prefHeight="60.0" prefWidth="800.0">

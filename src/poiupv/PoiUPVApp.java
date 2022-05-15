@@ -11,8 +11,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Navegacion;
+import model.Session;
 
 /**
  *
@@ -21,6 +23,7 @@ import model.Navegacion;
 public class PoiUPVApp extends Application {
     
     public static Navegacion navLib;
+    public static Session currentSession;
     public static model.User currentUser;
     
     @Override
@@ -31,7 +34,10 @@ public class PoiUPVApp extends Application {
             System.out.println("Navegation singleton init error");
         }
         //navLib.registerUser("nombreTest", "correoTest", "123456", LocalDate.now());
-        Parent root = FXMLLoader.load(getClass().getResource("../loginPackage/loginFXML.fxml"));
+        //currentUser = navLib.getUser("nombreTest");
+        //currentUser.setAvatar(new Image("/imgData/85498161615209203_1636332751.jpg"));
+        //currentUser.setBirthdate(LocalDate.now());
+        Parent root = FXMLLoader.load(getClass().getResource("/loginPackage/loginFXML.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("Nautica418");
@@ -45,6 +51,14 @@ public class PoiUPVApp extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    public static void updateSession() {
+        
+    }
+    
+    public static void saveSession() {
+        
     }
     
 }

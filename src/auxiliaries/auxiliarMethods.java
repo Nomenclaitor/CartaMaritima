@@ -5,15 +5,28 @@
  */
 package auxiliaries;
 
+import java.io.IOException;
 import javafx.beans.property.BooleanProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
  * @author qiyao
  */
 public class auxiliarMethods {
+    
+    /**
+     * Auxiliary method to manage error messages
+     * @param errorLabel error label to prompt
+     * @param textField field to highlight
+     * @param boolProp Boolean variable 
+     */
      public static void manageError(Label errorLabel,TextField textField, BooleanProperty boolProp ){
         boolProp.setValue(Boolean.FALSE);
         showErrorMessage(errorLabel,textField);
@@ -21,42 +34,99 @@ public class auxiliarMethods {
         //textField.requestFocus();
      }
     
-    public static void manageError(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField, BooleanProperty boolprop) {
+     /**
+      * Same auxiliary method as the one above
+      * Can control 2 error labels at the same time
+      * @param errorLabel error label 1
+      * @param secondErrorLabel error label 2
+      * @param firstTextField field to highlight
+      * @param boolprop Boolean variable
+      */
+    public static void manageError(Label errorLabel, Label secondErrorLabel, TextField firstTextField, BooleanProperty boolprop) {
         boolprop.setValue(Boolean.FALSE);
-        showErrorMessage(errorLabel, firstTextField, secondTextField, thirdTextField);
+        showErrorMessage(errorLabel, secondErrorLabel, firstTextField);
     }
     
-    public static void showErrorMessage(Label errorLabel,TextField textField) {
+    /**
+     * Private method to show error labels and highlight the textField
+     * @param errorLabel error label
+     * @param textField field to highlight
+     */
+    private static void showErrorMessage(Label errorLabel,TextField textField) {
         errorLabel.visibleProperty().set(true);
         textField.styleProperty().setValue("-fx-background-color: #FCE5E0");    
     }
     
-    public static void showErrorMessage(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField) {
+    /**
+     * Same private method as the one above
+     * Shows two error labels at the same time
+     * @param errorLabel error label 1
+     * @param secondErrorLabel error label 2
+     * @param firstTextField field to highlight
+     */
+    private static void showErrorMessage(Label errorLabel, Label secondErrorLabel, TextField firstTextField) {
         errorLabel.visibleProperty().set(true);
+        secondErrorLabel.visibleProperty().set(true);
         firstTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
-        secondTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
-        thirdTextField.styleProperty().setValue("-fx-background-color: #FCE5E0");
     }
     
+    /**
+     * Auxiliary method to hide error messages and un-highlight the fields
+     * @param errorLabel error label to hide
+     * @param textField field to un-highlight
+     * @param boolProp Boolean property to update
+     */
     public static void manageCorrect(Label errorLabel,TextField textField, BooleanProperty boolProp ){
         boolProp.setValue(Boolean.TRUE);
         hideErrorMessage(errorLabel,textField);
     }
     
-    public static void manageCorrect(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField, BooleanProperty boolprop) {
+    /**
+     * Same method as the one above
+     * Hides two error labels
+     * @param errorLabel error label 1
+     * @param secondErrorLabel error label 2
+     * @param firstTextField field to highlight
+     */
+    public static void manageCorrect(Label errorLabel, Label secondErrorLabel, TextField firstTextField,BooleanProperty boolprop) {
        boolprop.setValue(Boolean.TRUE);
-        hideErrorMessage(errorLabel, firstTextField, secondTextField, thirdTextField);
+        hideErrorMessage(errorLabel, secondErrorLabel, firstTextField);
     }
     
-    public static void hideErrorMessage(Label errorLabel,TextField textField) {
+    /**
+     * Private auxiliary method to hide error label and un-highlight
+     * @param errorLabel error label to hide
+     * @param textField field to un-highlight
+     */
+    private static void hideErrorMessage(Label errorLabel,TextField textField) {
         errorLabel.visibleProperty().set(false);
-        textField.styleProperty().setValue("-fx-background-color: #C2FFDA");
+        textField.styleProperty().setValue("-fx-background-color: #C7EEFF");
     }
     
-    public static void hideErrorMessage(Label errorLabel, TextField firstTextField, TextField secondTextField, TextField thirdTextField) {
+    /**
+     * Private auxiliary method to hide error label and un-highlight
+     * @param errorLabel first error label to hide
+     * @param secondErrorLabel second error label to hide
+     * @param textField field to un-highlight
+     */
+    private static void hideErrorMessage(Label errorLabel, Label secondErrorLabel, TextField firstTextField) {
         errorLabel.visibleProperty().set(false);
-        firstTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
-        secondTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
-        thirdTextField.styleProperty().setValue("-fx-background-color: #C2FFDA");
+        secondErrorLabel.visibleProperty().set(false);
+        firstTextField.styleProperty().setValue("-fx-background-color: #C7EEFF");
+    }
+    
+    public static void loadWindow(FXMLLoader loader, String title, int width, int height) {
+        try {
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root, width, height);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("IOException at " + loader.getLocation());
+        }
     }
 }

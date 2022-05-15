@@ -63,9 +63,11 @@ public class SignupPrincipalFXMLController implements Initializable {
     
     protected static String username;
     protected static String email;
-    protected static String birthday;
+    protected static LocalDate birthday;
     protected static String password;
     protected static String profilePath;
+    
+    protected BooleanBinding validFields;
     
     /**
      * Initializes the controller class.
@@ -80,8 +82,10 @@ public class SignupPrincipalFXMLController implements Initializable {
         validEmail.setValue(Boolean.FALSE);
         validBirthday.setValue(Boolean.FALSE);
         
+        
+        
         BooleanBinding userEmailBinding = Bindings.and(validUsername, validEmail);
-        BooleanBinding validFields = Bindings.and(userEmailBinding, validBirthday);
+        validFields = Bindings.and(userEmailBinding, validBirthday);
         
         userNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -101,16 +105,35 @@ public class SignupPrincipalFXMLController implements Initializable {
             }
         });
         
-        nextButton.disableProperty().bind(Bindings.not(validFields));
-    }    
+    }  
+    
+    /**
+     * Shows the data input of the user in the fields when coming back to this window
+     * Retrieves the input of the user and loads it into the respective fields
+     */
+    protected void showData() {
+        userNameField.setText(username);
+        emailField.setText(email);
+        datePicker.setValue(birthday);
+        
+        validUsername.setValue(Boolean.TRUE);
+        validEmail.setValue(Boolean.TRUE);
+        validBirthday.setValue(Boolean.TRUE);
+        System.out.println(password);
+    }
     
     //Test passed
+    /**
+     * Checks if the username has been already registered in the system
+     * and if the username meets the requirements
+     */
     private void checkUsername() {
-        
-        
         String inputUsername = userNameField.textProperty().getValueSafe();
         
-        if (PoiUPVApp.navLib.exitsNickName(inputUsername) || !model.User.checkNickName(inputUsername)) {
+        if (PoiUPVApp.navLib.exitsNickName(inputUsername)) {
+            auxiliarMethods.manageError(userNameLabel, userNameField, validUsername);
+        } else if(!model.User.checkNickName(inputUsername)) {
+            userNameLabel.setText("El nombre de usuario no cumple con los requisitos.");
             auxiliarMethods.manageError(userNameLabel, userNameField, validUsername);
         } else {
             auxiliarMethods.manageCorrect(userNameLabel, userNameField, validUsername);
@@ -119,20 +142,28 @@ public class SignupPrincipalFXMLController implements Initializable {
     }
     
     //Test passed
+    /**
+     * Checks if the email meets the requirements (email domain must be legal)
+     */
     private void checkEmail() {
         String inputEmail = emailField.textProperty().getValueSafe();
         if (!model.User.checkEmail(inputEmail)) {
             auxiliarMethods.manageError(emailLabel, emailField, validEmail);
         } else {
             auxiliarMethods.manageCorrect(emailLabel, emailField, validEmail);
-            username = inputEmail;
+            email = inputEmail;
         }
     }
     
     
     //test passed
+    /**
+     * Checks if the birthday input meets the requirements
+     * user must be at least 16 years old
+     */
     private void checkBirthday() {
-        if (Period.between(datePicker.getValue(), LocalDate.now()).getYears() < 16) {
+        LocalDate inputBirthday = datePicker.getValue();
+        if (Period.between(inputBirthday, LocalDate.now()).getYears() < 16) {
             validBirthday.setValue(Boolean.FALSE);
             birthdayLabel.visibleProperty().set(true);
             datePicker.styleProperty().setValue("-fx-background-color: #FCE5E0");
@@ -140,25 +171,32 @@ public class SignupPrincipalFXMLController implements Initializable {
             validBirthday.setValue(Boolean.TRUE);
             birthdayLabel.visibleProperty().set(false);
             datePicker.styleProperty().setValue("-fx-background-color: #C2FFDA");
+            birthday = inputBirthday;
         }
     }
 
+    /**
+     * Next button controller
+     * @param event 
+     */
     @FXML
     private void nextClicked(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
-            Parent root = loader.load();
-            
-            Scene scene = new Scene(root, 800, 480);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Nautica Signup");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            
-            nextButton.getScene().getWindow().hide();
-        } catch (IOException e) {
-            System.out.println("IOException at signup fxml loader");
+        if (validFields.getValue() == true) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root, 800, 480);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Nautica Signup");
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+                nextButton.getScene().getWindow().hide();
+            } catch (IOException e) {
+                System.out.println("IOException at signup fxml loader");
+            }
         }
     }
     
