@@ -296,14 +296,13 @@ public class FXMLDocumentController implements Initializable {
     //Untested
     private void toMainMenu() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../principalUsuarios/vpUsuariosFXML.fxml"));
-        auxiliarMethods.loadWindow(loader, "Menu Principal", 800, 480);
+        auxiliarMethods.loadWindow(loader, "Menu Principal", 960, 540);
         cancelButton.getScene().getWindow().hide();
     }
     
     //Untested
     private void toProblemSelector() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../problemSelect/problemSelectWindow.fxml"));
-        auxiliarMethods.loadWindow(loader, "Selector de problemas", 800, 480);
+        //Save problem answer (failed)
         cancelButton.getScene().getWindow().hide();
     }
 
