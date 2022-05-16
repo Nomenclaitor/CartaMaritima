@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import auxiliaries.ConcurrentClock;
 import auxiliaries.auxiliarMethods;
 import java.io.IOException;
+import javax.sound.midi.SysexMessage;
 import poiupv.PoiUPVApp;
 /**
  * FXML Controller class
@@ -77,11 +78,16 @@ public class VpUsuariosFXMLController implements Initializable {
 
     @FXML
     private void modifyPressed(ActionEvent event) {
-        URL fxmlLocation = getClass().getResource("/dataModPackage/dataModFXML.fxml");
-        System.out.println(fxmlLocation);
+        try {
+            URL fxmlLocation = getClass().getResource("/dataModPackage/dataModFXML.fxml");
+        
+        System.out.println("Esta en " + fxmlLocation);
         FXMLLoader loader = new FXMLLoader(fxmlLocation);
         auxiliarMethods.loadWindow(loader, "Modificar datos del usuario", 960, 540);
         datamodButton.getScene().getWindow().hide();
+        }catch (Exception e){
+            System.err.println(e.toString());
+        }
     }
 
     @FXML

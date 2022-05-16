@@ -37,23 +37,35 @@ public class ProblemSelectWindowController implements Initializable {
     @FXML
     private Button changeuUerButton;
     @FXML
-    private Button datamodButton;
+    private Button mainMenuButton;
     @FXML
-    private Button openRandomBUtotn;
+    private HBox nameTextField;
     @FXML
-    private Button openSelectedButton;
+    private TextField nameField;
     @FXML
-    private ListView<?> problemListView;
+    private TextField emailField;
     @FXML
-    private Label problemTextLabel;
+    private Label emailLabel;
     @FXML
-    private RadioButton option1Selector;
+    private DatePicker datePicker;
     @FXML
-    private RadioButton option2Selector;
+    private Label emailLabel1;
     @FXML
-    private RadioButton option3Selector;
+    private PasswordField passwordField;
     @FXML
-    private RadioButton option4Selection;
+    private Label passworLabel;
+    @FXML
+    private PasswordField PasswordRepField;
+    @FXML
+    private Label passwordRepLabel;
+    @FXML
+    private ImageView defaultPic6;
+    @FXML
+    private Button fileSelectButton;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button saveButton;
 
     /**
      * Initializes the controller class.
@@ -80,11 +92,15 @@ public class ProblemSelectWindowController implements Initializable {
     }
 
     @FXML
-    private void openRandomPressed(ActionEvent event) {
+    private void fileSelectPressed(ActionEvent event) {
     }
 
     @FXML
-    private void openSelectedPressed(ActionEvent event) {
+    private void cancelPressed(ActionEvent event) {
+    }
+
+    @FXML
+    private void savePressed(ActionEvent event) {
     }
 
     
