@@ -52,6 +52,8 @@ public class SignupFXMLController implements Initializable {
     private String inputPassword;
     private String passwordRep;
     
+    protected BooleanBinding validFields;
+    
     /**
      * Initializes the controller class.
      */
@@ -62,6 +64,8 @@ public class SignupFXMLController implements Initializable {
         
         validPassword.setValue(Boolean.FALSE);
         passwordRepCorrect.setValue(Boolean.FALSE);
+        
+        validFields = Bindings.and(validPassword, passwordRepCorrect);
         
         BooleanBinding passwordOk = Bindings.and(validPassword, passwordRepCorrect);
         passwordField.focusedProperty().addListener((observable, oldvalue,newValue) -> {
@@ -83,8 +87,12 @@ public class SignupFXMLController implements Initializable {
      * Retrieves the input of the user and loads it into the respective fields
      */
     protected void showData() {
-        
-    }
+        if (SignupPrincipalFXMLController.password != null) {
+            passwordField.setText(SignupPrincipalFXMLController.password);
+            PasswordRepField.setText(SignupPrincipalFXMLController.password);
+            validFields = Bindings.and(validPassword, passwordRepCorrect);
+        }
+   }
 
     //Check what is wrong with the password
     //Would be good to have
@@ -121,23 +129,22 @@ public class SignupFXMLController implements Initializable {
      */
     @FXML
     private void previousClicked(ActionEvent event) {
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
-        Parent root = loader.load();
-        
-        SignupPrincipalFXMLController previousSignupWindow = loader.getController();
-        previousSignupWindow.showData();
-
-        Scene scene = new Scene(root, 800, 480);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Nautica Signup");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        
-        nextButton.getScene().getWindow().hide();
+        try {        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupPrincipalFXML.fxml"));
+            Parent root = loader.load();
+            
+            SignupPrincipalFXMLController signUpPrincipal = loader.getController();
+            signUpPrincipal.showData();
+            
+            Scene scene = new Scene(root, 800, 480);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Nautica Signup");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            previousButton.getScene().getWindow().hide();
         } catch (IOException e) {
-            System.out.println("Signup landing page loading failed");
+            System.out.println("IOException loading main signup");
         }
     }
 
@@ -148,6 +155,20 @@ public class SignupFXMLController implements Initializable {
      */
     @FXML
     private void nextClicked(ActionEvent event) {
+        checkPassword();
+        checkPasswordRep();
+        if (validFields.getValue() == true) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupProfilePicture.fxml"));
+            auxiliarMethods.loadWindow(loader, "Nautica Signup", 800, 480);
+            nextButton.getScene().getWindow().hide();
+            return;
+        } else if (validPassword.getValue() == false) {
+            auxiliarMethods.manageError(passworLabel, passwordField, validPassword);
+        }
+        if (passwordRepCorrect.getValue() == false) {
+            auxiliarMethods.manageError(passwordRepLabel, PasswordRepField, passwordRepCorrect);
+        }
     }
+    
     
 }

@@ -5,12 +5,9 @@
  */
 package problemSelect;
 
-import DBAccess.NavegacionDAO;
-import DBAccess.NavegacionDAOException;
 import auxiliaries.auxiliarMethods;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,16 +15,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import poiupv.PoiUPVApp;
 
 import model.Problem;
 import poiupv.PoiUPVApp;
@@ -68,8 +59,6 @@ public class ProblemSelectWindowController implements Initializable {
     @FXML
     private RadioButton option3Selector;
     @FXML
-    private Button backButton;
-    @FXML
     private Button changeuUserButton;
     
     private List<Problem> listaProblemas;
@@ -79,6 +68,8 @@ public class ProblemSelectWindowController implements Initializable {
     private Problem selectedProblem;
     @FXML
     private RadioButton option4Selector;
+    @FXML
+    private Button backButton;
     @FXML
     private Button openRandomButton;
 
@@ -140,15 +131,15 @@ public class ProblemSelectWindowController implements Initializable {
 
     @FXML
     private void changeUserPressed(ActionEvent event) {
-        //add update session
-        PoiUPVApp.currentUser = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginPackage/loginFXML.fxml"));
-        auxiliarMethods.loadWindow(loader, "Login", 800, 480);
-        changeuUserButton.getScene().getWindow().hide();
+        if (auxiliarMethods.promptAlert("salir al menu de Login", "Si ha modificado alguno de los campos, estos no se guardarán.\nHaga click en OK para cerrar sesión o cancelar para cerrar esta ventana emergente.")) {
+            //add Session
+            PoiUPVApp.currentUser = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginPackage/loginFXML.fxml"));
+            auxiliarMethods.loadWindow(loader, "nautica Login", 800, 480);
+        }
     }
 
-    // Problem list error
-    // Problem list size is 0
+
     @FXML
     private void openRandomPressed(ActionEvent event) {
         try {
@@ -176,6 +167,7 @@ public class ProblemSelectWindowController implements Initializable {
             Parent root = loader.load();
             poiupv.FXMLDocumentController mapController = loader.getController();
             
+            selectedProblem = listaProblemas.get(problemListView.getSelectionModel().getSelectedIndex());
             mapController.setTest(selectedProblem);
             
             Scene scene = new Scene(root, 960, 540);
@@ -207,4 +199,5 @@ public class ProblemSelectWindowController implements Initializable {
         }
         return sentencesArray;
     }  
+
 }

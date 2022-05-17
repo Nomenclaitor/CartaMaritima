@@ -26,6 +26,8 @@ public class PoiUPVApp extends Application {
     public static Session currentSession;
     public static model.User currentUser;
     
+    private static Scene scene;
+    
     @Override
     public void start(Stage stage) throws Exception {
         try {
@@ -39,7 +41,7 @@ public class PoiUPVApp extends Application {
         //currentUser.setBirthdate(LocalDate.now());
         Parent root = FXMLLoader.load(getClass().getResource("/loginPackage/loginFXML.fxml"));
         
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setTitle("Nautica418");
         stage.setScene(scene);
         stage.show();

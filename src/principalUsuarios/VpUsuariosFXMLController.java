@@ -5,8 +5,6 @@
  */
 package principalUsuarios;
 
-import DBAccess.NavegacionDAOException;
-import auxiliaries.ConcurrentClock;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,11 +21,6 @@ import auxiliaries.auxiliarMethods;
 import java.io.IOException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import poiupv.PoiUPVApp;
@@ -99,12 +92,14 @@ public class VpUsuariosFXMLController implements Initializable {
 
     @FXML
     private void closeSessionPressed(ActionEvent event) {
-        //Añadir sesion antes de cerrar sesion
-        //Por testear
-        PoiUPVApp.currentUser = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginPackage/loginFXML.fxml"));
-        auxiliarMethods.loadWindow(loader, "Login", 800, 480);
-        changeUserButton.getScene().getWindow().hide();
+        if (auxiliarMethods.promptAlert("Salir al menu de Login", "Se guardarán todos los datos de la sesión y se cerrará la sesión actual.")) {
+            //Añadir sesion antes de cerrar sesion
+            //Por testear
+            PoiUPVApp.currentUser = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginPackage/loginFXML.fxml"));
+            auxiliarMethods.loadWindow(loader, "Login", 800, 480);
+            changeUserButton.getScene().getWindow().hide();
+        }
     }
 
     @FXML

@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -93,18 +94,73 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="780.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="780.0" spacing="2.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Foto perfil 1" />
-                        <Button mnemonicParsing="false" text="Foto perfil 2" />
-                        <Button mnemonicParsing="false" text="Foto perfil 3" />
-                        <Button mnemonicParsing="false" text="Foto perfil 4" />
-                        <Button mnemonicParsing="false" text="Foto perfil 5" />
-                        <ImageView fx:id="defaultPic6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imgData/85498161615209203_1636332751.jpg" />
-                           </image>
-                        </ImageView>
+                        <Button fx:id="profilePic1" mnemonicParsing="false" onAction="#selectPic1" stylesheets="@signupprofilepicture.css">
+                           <graphic>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/avatars/avatar1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="profilePic2" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic2">
+                           <graphic>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/avatars/avatar2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="2.0" />
+                           </opaqueInsets></Button>
+                        <Button fx:id="profilePic3" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic3">
+                           <graphic>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/avatars/avatar3.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="2.0" />
+                           </opaqueInsets></Button>
+                        <Button fx:id="profilePIc4" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic4">
+                           <graphic>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/avatars/avatar4.png" />
+                                 </image></ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets left="2.0" />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></Button>
+                        <Button fx:id="profilePic5" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#selectPic5">
+                           <graphic>
+                              <ImageView fx:id="defaultPic6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/avatars/1652720318714.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                              <ImageView fx:id="customPicTure" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                              <Text fx:id="customPicLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Imagen Personalizada" visible="false" />
+                           </children>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets left="20.0" />
@@ -123,7 +179,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="780.0">
                      <children>
-                        <Button fx:id="fileSelectButton" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;" text="Elegir desde su ordenador" textFill="#0685bc">
+                        <Button fx:id="fileSelectButton" mnemonicParsing="false" onAction="#fileSelect" style="-fx-background-color: #FFFFFF;" text="Elegir desde su ordenador" textFill="#0685bc">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>

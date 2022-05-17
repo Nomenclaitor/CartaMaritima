@@ -6,10 +6,14 @@
 package auxiliaries;
 
 import java.io.IOException;
+import java.util.Optional;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -89,7 +93,7 @@ public class auxiliarMethods {
      * @param firstTextField field to highlight
      */
     public static void manageCorrect(Label errorLabel, Label secondErrorLabel, TextField firstTextField,BooleanProperty boolprop) {
-       boolprop.setValue(Boolean.TRUE);
+        boolprop.setValue(Boolean.TRUE);
         hideErrorMessage(errorLabel, secondErrorLabel, firstTextField);
     }
     
@@ -121,12 +125,48 @@ public class auxiliarMethods {
             
             Scene scene = new Scene(root, width, height);
             Stage stage = new Stage();
+            
             stage.setScene(scene);
             stage.setTitle(title);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
-            System.out.println("IOException at " + loader.getLocation());
+            System.out.println(e);
         }
+       
+    }
+    
+    public static void highlightSelection(Button highlightButton) {
+        highlightButton.styleProperty().setValue("-fx-border-color: #0685BC");
+        highlightButton.styleProperty().setValue("-fx-border-width: 2");
+        highlightButton.styleProperty().setValue("-fx-border-radius: 10C");
+        highlightButton.styleProperty().setValue("-fx-background-radius: 10");
+    }
+    
+    public static void unhighlightSelection(Button unhighlightButton) {
+        unhighlightButton.styleProperty().setValue("-fx-border-color: ");
+        unhighlightButton.styleProperty().setValue("-fx-border-width: ");
+        unhighlightButton.styleProperty().setValue("-fx-border-radius: ");
+        unhighlightButton.styleProperty().setValue("-fx-background-radius: ");
+    }
+    
+    public static void errorPrompt(String title, String header, String bodyText) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle(title);
+        errorAlert.setHeaderText(header);
+        errorAlert.setContentText(bodyText);
+        errorAlert.showAndWait();
+    }
+    
+    public static boolean promptAlert(String headerType, String bodyText) {
+        Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        exitAlert.setTitle("Confirmación de Salida");
+        exitAlert.setHeaderText("Está seguro de " + headerType +"?");
+        exitAlert.setContentText(bodyText);
+        Optional<ButtonType> result = exitAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            return true;
+        }
+        return false;
     }
 }

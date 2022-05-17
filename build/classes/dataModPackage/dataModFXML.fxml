@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="problemSelect.ProblemSelectWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dataModPackage.DataModFXMLController">
    <top>
       <VBox maxHeight="140.0" minHeight="120.0" prefHeight="120.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -40,7 +40,7 @@
                                     <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#modifyPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Menu principal" textFill="WHITE">
+                              <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#mainMenuPressed" prefHeight="45.0" style="-fx-background-color: #0685bc;" text="Menu principal" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="40.0" right="5.0" />
                                  </HBox.margin>
@@ -115,7 +115,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <HBox fx:id="nameTextField" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
                            <children>
                               <TextField fx:id="nameField" minWidth="260.0" prefHeight="25.0" prefWidth="260.0">
                                  <HBox.margin>
@@ -140,7 +140,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Label fx:id="emailLabel" minHeight="40.0" prefHeight="20.0" text="El correo tiene un formato incorrecto" textFill="RED" visible="false" wrapText="true">
+                              <Label fx:id="invalidEmailLabel" minHeight="40.0" prefHeight="20.0" text="El correo tiene un formato incorrecto" textFill="RED" visible="false" wrapText="true">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -162,7 +162,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="200.0">
                            <children>
                               <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="220.0" />
-                              <Label fx:id="emailLabel1" minHeight="40.0" prefHeight="40.0" prefWidth="260.0" text="La fecha introducida no cumple la edad minima de 16 años" textFill="RED" visible="false" wrapText="true">
+                              <Label fx:id="birthdayLabel" minHeight="40.0" prefHeight="40.0" prefWidth="260.0" text="La fecha introducida no cumple la edad minima de 16 años" textFill="RED" visible="false" wrapText="true">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -206,7 +206,7 @@
                                     </PasswordField>
                                  </children>
                               </HBox>
-                              <Label fx:id="passworLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" visible="false" wrapText="true">
+                              <Label fx:id="passwordFormatLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña no cumple con los requisitos necesarios." textFill="RED" visible="false" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="36.0" />
                                  </VBox.margin>
@@ -239,7 +239,7 @@
                                     </PasswordField>
                                  </children>
                               </HBox>
-                              <Label fx:id="passwordRepLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña introducida no coincide" textFill="RED" visible="false" wrapText="true">
+                              <Label fx:id="passwordDontMatchLabel" minHeight="24.0" prefHeight="24.0" prefWidth="400.0" text="La contraseña introducida no coincide" textFill="RED" visible="false" wrapText="true">
                                  <VBox.margin>
                                     <Insets left="36.0" />
                                  </VBox.margin>
@@ -269,17 +269,52 @@
             </Text>
             <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="960.0">
                <children>
-                  <Button mnemonicParsing="false" text="Foto perfil 1" />
-                  <Button mnemonicParsing="false" text="Foto perfil 2" />
-                  <Button mnemonicParsing="false" text="Foto perfil 3" />
-                  <Button mnemonicParsing="false" text="Foto perfil 4" />
-                  <Button mnemonicParsing="false" text="Foto perfil 5" />
-                  <ImageView fx:id="defaultPic6" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../imgData/85498161615209203_1636332751.jpg" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="profilePic1" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic1">
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/avatars/avatar1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="profilePic2" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic2">
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/avatars/avatar2.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="profilePic3" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic3">
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/avatars/avatar3.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="profilePic4" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic4">
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/avatars/avatar4.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="profilePic5" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#selectPic5">
+                     <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgData/avatars/1652720318714.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fx:id="customProfilePic" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets right="6.0" />
+                     </HBox.margin>
+                  </ImageView>
                   <VBox minWidth="205.0" prefHeight="205.0" prefWidth="180.0">
                      <HBox.margin>
                         <Insets right="20.0" />
@@ -293,7 +328,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Label prefHeight="40.0" prefWidth="205.0" text="Elija una foto en su ordenador" wrapText="true" />
+                        <Label fx:id="filePathLabel" prefHeight="40.0" prefWidth="205.0" text="Elija una foto en su ordenador" wrapText="true" />
                      </children>
                   </VBox>
                </children>

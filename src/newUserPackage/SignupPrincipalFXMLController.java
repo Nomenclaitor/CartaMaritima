@@ -6,10 +6,8 @@
 package newUserPackage;
 
 import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,13 +23,14 @@ import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+
 
 import java.time.Period;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -119,7 +118,6 @@ public class SignupPrincipalFXMLController implements Initializable {
         validUsername.setValue(Boolean.TRUE);
         validEmail.setValue(Boolean.TRUE);
         validBirthday.setValue(Boolean.TRUE);
-        System.out.println(password);
     }
     
     //Test passed
@@ -182,21 +180,35 @@ public class SignupPrincipalFXMLController implements Initializable {
     @FXML
     private void nextClicked(ActionEvent event) {
         if (validFields.getValue() == true) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
-                Parent root = loader.load();
-
-                Scene scene = new Scene(root, 800, 480);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Nautica Signup");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-
-                nextButton.getScene().getWindow().hide();
-            } catch (IOException e) {
-                System.out.println("IOException at signup fxml loader");
-            }
+            try {        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newUserPackage/signupFXML.fxml"));
+            Parent root = loader.load();
+            
+            SignupFXMLController passwordSignup = loader.getController();
+            passwordSignup.showData();
+            
+            Scene scene = new Scene(root, 800, 480);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Nautica Signup");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            nextButton.getScene().getWindow().hide();
+        } catch (IOException e) {
+            System.out.println("IOException loading main signup");
+        }
+            return;
+        } else if (validUsername.getValue() == false) {
+            auxiliarMethods.manageError(userNameLabel, userNameField, validUsername);
+        }
+        if (validEmail.getValue() == false) {
+            auxiliarMethods.manageError(emailLabel, emailField, validEmail);
+        }
+        if (validBirthday.getValue() == false) {
+            validBirthday.setValue(Boolean.FALSE);
+            birthdayLabel.visibleProperty().set(true);
+            datePicker.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            
         }
     }
     

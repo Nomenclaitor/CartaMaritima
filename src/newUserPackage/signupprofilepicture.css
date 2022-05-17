@@ -3,5 +3,13 @@
  */
 
 .mainFxmlClass {
+    
 
+}
+
+#selected {
+    -fx-border-color: #0685BC;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
