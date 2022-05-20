@@ -24,6 +24,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import poiupv.PoiUPVApp;
+
+import auxiliaries.sessionDataAux;
 /**
  * FXML Controller class
  *
@@ -70,12 +72,13 @@ public class VpUsuariosFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("Initializing main menu");
         usernameText.setText(PoiUPVApp.currentUser.getNickName());
         userprofilePicture.setImage(PoiUPVApp.currentUser.getAvatar());
         emailLabel.setText(PoiUPVApp.currentUser.getEmail());
         birthdayLabel.setText(PoiUPVApp.currentUser.getBirthdate().toString());
         localClockInitialize();
-        
+        setLabels();
     }    
 
     @FXML
@@ -95,6 +98,7 @@ public class VpUsuariosFXMLController implements Initializable {
         if (auxiliarMethods.promptAlert("Salir al menu de Login", "Se guardarán todos los datos de la sesión y se cerrará la sesión actual.")) {
             //Añadir sesion antes de cerrar sesion
             //Por testear
+            PoiUPVApp.saveSession();
             PoiUPVApp.currentUser = null;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../loginPackage/loginFXML.fxml"));
             auxiliarMethods.loadWindow(loader, "Login", 800, 480);
@@ -110,8 +114,7 @@ public class VpUsuariosFXMLController implements Initializable {
     }
 
     @FXML
-    private void showMapPressed(ActionEvent event) {
-        try {
+    private void showMapPressed(ActionEvent event) throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../poiupv/FXMLDocument.fxml"));
             Parent root = loader.load();
             poiupv.FXMLDocumentController mapController = loader.getController();
@@ -124,9 +127,7 @@ public class VpUsuariosFXMLController implements Initializable {
             stage.setTitle("Mapa en blanco");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-        } catch (IOException e) {
-            System.out.println("IOException loading blanck map");
-        }
+        
         showMapButton.getScene().getWindow().hide();
     }
     
@@ -144,6 +145,15 @@ public class VpUsuariosFXMLController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../userProgressPackage/userProgressFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Progreso del usuario", 960, 540);
         userprogressButton.getScene().getWindow().hide();
+    }
+
+    private void setLabels() {
+        System.out.println("set label start");
+        correctLabel.setText(Integer.toString(sessionDataAux.getTotalCorrect()));
+        failureLabel.setText(Integer.toString(sessionDataAux.getTotalIncorrect()));
+        sucessRateLabel.setText(Double.toString(sessionDataAux.getTotalCorrectPercentage()) + "%");
+        failureRateLabel.setText(Double.toString(sessionDataAux.getTotalIncorrectPercentage()) + "%");
+        gradeLabel.setText(String.format("%.2f", sessionDataAux.getGrade()));
     }
 
 

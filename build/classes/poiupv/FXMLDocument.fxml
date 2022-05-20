@@ -12,6 +12,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -58,28 +59,31 @@
                      <VBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="answerGroup" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="option2Button" mnemonicParsing="false" onAction="#option2Selected" text="Option 2">
+                  <RadioButton fx:id="option2Button" mnemonicParsing="false" onAction="#option2Selected" text="Option 2" toggleGroup="$answerGroup">
                      <VBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="option3Button" mnemonicParsing="false" onAction="#option3Selected" text="Option 3">
+                  <RadioButton fx:id="option3Button" mnemonicParsing="false" onAction="#option3Selected" text="Option 3" toggleGroup="$answerGroup">
                      <VBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="option4Button" mnemonicParsing="false" onAction="#option4Selected" text="Option 4">
+                  <RadioButton fx:id="option4Button" mnemonicParsing="false" onAction="#option4Selected" text="Option 4" toggleGroup="$answerGroup">
                      <VBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </VBox.margin>
                   </RadioButton>
-                  <Region prefHeight="0.0" prefWidth="420.0" VBox.vgrow="ALWAYS" />
-                  <HBox prefHeight="80.0" prefWidth="200.0">
+                  <Region maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="369.0" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-border-color: #0685bc; -fx-border-width: 2; -fx-border-radius: 10;" text="Cancelar" textFill="#0685bc">
                            <HBox.margin>
-                              <Insets left="20.0" top="26.0" />
+                              <Insets left="20.0" top="10.0" />
                            </HBox.margin>
                            <graphic>
                               <ImageView fx:id="cancelButtonImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -98,10 +102,10 @@
                         </Region>
                         <Button fx:id="verifyButton" mnemonicParsing="false" onAction="#verifyPressed" style="-fx-background-color: #0685bc; -fx-background-radius: 10;" text="Verificar respuesta" textFill="WHITE">
                            <HBox.margin>
-                              <Insets right="20.0" top="26.0" />
+                              <Insets right="20.0" top="10.0" />
                            </HBox.margin>
                            <graphic>
-                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="veirfyButonImage" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/whiteCheck.png" />
                                  </image></ImageView>
@@ -112,7 +116,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -179,6 +183,11 @@
                            </graphic></Button>
                      </children>
                   </HBox>
+                  <Label maxWidth="1.7976931348623157E308" text="Opciones de puntos" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin>
+                  </Label>
                   <HBox prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <ColorPicker fx:id="colorPicker" maxWidth="1.7976931348623157E308" prefHeight="40.0" HBox.hgrow="ALWAYS" />
@@ -203,7 +212,7 @@
                <content>
                   <Pane>
                      <children>
-                        <ImageView fitHeight="5760.0" fitWidth="8960.0" layoutX="-570.0" layoutY="-284.0" pickOnBounds="true">
+                        <ImageView fitHeight="5760.0" fitWidth="8960.0" layoutX="-656.0" layoutY="-363.0" pickOnBounds="true">
                            <image>
                               <Image url="@../resources/carta_nautica.jpg" />
                            </image>

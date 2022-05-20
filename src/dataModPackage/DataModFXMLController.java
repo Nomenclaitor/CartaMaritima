@@ -183,6 +183,7 @@ public class DataModFXMLController implements Initializable {
     private void changeUserPressed(ActionEvent event) {
         if (auxiliarMethods.promptAlert("salir al menu de Login", "Si ha modificado alguno de los campos, estos no se guardarán.\nHaga click en OK para cerrar sesión o cancelar para cerrar esta ventana emergente.")) {
             //add Session
+            PoiUPVApp.saveSession();
             PoiUPVApp.currentUser = null;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginPackage/loginFXML.fxml"));
             auxiliarMethods.loadWindow(loader, "nautica Login", 800, 480);

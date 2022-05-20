@@ -7,6 +7,7 @@ package poiupv;
 
 import DBAccess.NavegacionDAOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,8 +24,11 @@ import model.Session;
 public class PoiUPVApp extends Application {
     
     public static Navegacion navLib;
-    public static Session currentSession;
     public static model.User currentUser;
+    
+    private static Session currentSession;
+    public static int correct = 0;
+    public static int incorrect = 0;
     
     private static Scene scene;
     
@@ -35,6 +39,7 @@ public class PoiUPVApp extends Application {
         } catch (NavegacionDAOException e) {
             System.out.println("Navegation singleton init error");
         }
+        
         //navLib.registerUser("nombreTest", "correoTest", "123456", LocalDate.now());
         //currentUser = navLib.getUser("nombreTest");
         //currentUser.setAvatar(new Image("/imgData/85498161615209203_1636332751.jpg"));
@@ -55,12 +60,23 @@ public class PoiUPVApp extends Application {
         launch(args);
     }
     
-    public static void updateSession() {
-        
+    public static void saveSession() {
+        currentSession = new Session(LocalDateTime.now(), correct, incorrect);
+        try {
+            currentUser.addSession(currentSession);
+        } catch (NavegacionDAOException e) {
+            System.out.println("Error saving current user session");
+            System.out.println(e);
+        }
     }
     
-    public static void saveSession() {
-        
+    public void stop() {
+        currentSession = new Session(LocalDateTime.now(), correct, incorrect);
+        try {
+            currentUser.addSession(currentSession);
+        } catch (NavegacionDAOException e) {
+            System.out.println("Error saving session at app exit");
+        }
     }
     
 }

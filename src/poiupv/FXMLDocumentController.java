@@ -31,6 +31,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,7 +39,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Answer;
 import model.Navegacion;
+import model.Problem;
 import poiupv.Poi;
 
 /**
@@ -105,12 +108,27 @@ public class FXMLDocumentController implements Initializable {
     private Button decSizeButton;
     @FXML
     private ImageView anglePortractor;
-
-    private boolean fromMainMenu = false;
-    
-    private Alert exitAlert = new Alert(AlertType.CONFIRMATION);
+    @FXML
+    private ToggleGroup answerGroup;
     @FXML
     private ImageView cancelButtonImage;
+    @FXML
+    private ImageView veirfyButonImage;
+
+    private boolean fromMainMenu = false;
+    private boolean answerVerified = false;
+    
+    //????
+    private Alert exitAlert = new Alert(AlertType.CONFIRMATION);
+    
+    private Problem problem;
+    private List<Answer> answersList;
+
+    
+    private Answer finalAnswer = null;
+    private RadioButton selectedButton = null;
+    
+    
     
     @FXML
     void zoomIn(ActionEvent event) {
@@ -144,8 +162,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void initData() {
-        hm.put("2F", new Poi("2F", "Edificion del DSIC", 325, 225));
-        hm.put("Agora", new Poi("Agora", "Agora", 600, 360));
+        
     }
 
     @Override
@@ -155,7 +172,7 @@ public class FXMLDocumentController implements Initializable {
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.5);
-        zoom_slider.setMax(1.5);
+        zoom_slider.setMax(2.5);
         zoom_slider.setValue(1.0);
         zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
         
@@ -167,7 +184,10 @@ public class FXMLDocumentController implements Initializable {
         contentGroup.getChildren().add(zoomGroup);
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
-
+        
+        
+        //
+        
     }
 
     @FXML
@@ -189,18 +209,26 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void option1Selected(ActionEvent event) {
+        finalAnswer = answersList.get(0);
+        selectedButton = option1Button;
     }
 
     @FXML
     private void option2Selected(ActionEvent event) {
+        finalAnswer = answersList.get(1);
+        selectedButton = option2Button;
     }
 
     @FXML
     private void option3Selected(ActionEvent event) {
+        finalAnswer = answersList.get(2);
+        selectedButton = option3Button;
     }
 
     @FXML
     private void option4Selected(ActionEvent event) {
+        finalAnswer = answersList.get(3);
+        selectedButton = option4Button;
     }
 
     @FXML
@@ -217,54 +245,132 @@ public class FXMLDocumentController implements Initializable {
             exitAlert.setContentText("Todo el progeso en el mapa será borrado y el problema dado como fallido");
             Optional<ButtonType> result = exitAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-            toProblemSelector();
+                PoiUPVApp.incorrect++;
+                auxiliaries.sessionDataAux.increaseIncorrect();
+                toProblemSelector();
             }
         }
+    }
+    
+    private boolean verifySelection() {
+        answerVerified = true;
+        if (finalAnswer == null) {
+            return false;
+        }
+        return finalAnswer.getValidity();
+    }
+    
+    //
+    //
+    //Highlight is not showing
+    //
+    private void highlightAnswer(boolean selectionCorrect) {
+        if (selectionCorrect) {
+            System.out.println("Correct highlight");
+            System.out.println(selectedButton.getId());
+            selectedButton.styleProperty().setValue("-fx-background-color: #C7EEFF");
+            selectedButton.styleProperty().setValue("-fx-background-radius: 10");
+        } else {
+            System.out.println("Incorrect highlight");
+            RadioButton auxButton = getCorrectAnswer();
+            System.out.println(auxButton.getId());
+            auxButton.styleProperty().setValue("-fx-background-color: #C7EEFF");
+            auxButton.styleProperty().setValue("-fx-background-radius: 10");
+            selectedButton.styleProperty().setValue("-fx-background-color: #FCE5E0");
+            selectedButton.styleProperty().setValue("-fx-background-radius: 10");
+        }
+    }
+    
+    private RadioButton getCorrectAnswer() {
+        if (answersList.get(0).getValidity()) {
+            return option1Button;
+        } else if (answersList.get(1).getValidity()) {
+            return option2Button;
+        } else if (answersList.get(2).getValidity()) {
+            return option3Button;
+        }
+        return option4Button;
     }
 
     @FXML
     private void verifyPressed(ActionEvent event) {
+        if (selectedButton != null) {
+            if (answerVerified) {
+                verifyButton.getScene().getWindow().hide();
+            } else {
+                if (auxiliarMethods.promptAlert("verificar la respuesta", "No podrá volver a cambiar de respuesta, pero podrá reintentarlo más adelante eligiendolo en la ventana de selección de probelmas")) {
+                    boolean selectionCorrect = verifySelection();
+                    highlightAnswer(selectionCorrect);
+                    if (selectionCorrect) {
+                        PoiUPVApp.correct++;
+                        auxiliaries.sessionDataAux.increaseCorrect();
+                    } else {
+                        PoiUPVApp.incorrect++;
+                        auxiliaries.sessionDataAux.increaseIncorrect();
+                    }
+                    auxiliaries.sessionDataAux.midSessionUpdate();
+                    dissableOptions();
+                    verifyToExit();
+                    cancelButton.setVisible(false);
+                }
+            }
+        } else {
+            auxiliarMethods.promptError("", "No ha seleccionado ninguna respuesta", "Selecciones una de las cuatro opociones para poder verificar su respuesta");
+        }
+        System.out.println(PoiUPVApp.correct);
+        System.out.println(PoiUPVApp.incorrect);
     }
 
     @FXML
     private void linePressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void arcPressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void pointPressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void textPressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void cursorPressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void anglerPressed(ActionEvent event) {
+        
     }
 
     @FXML
     private void changeFiller(ActionEvent event) {
+        
     }
 
     @FXML
     private void incSize(ActionEvent event) {
+        
     }
 
     @FXML
     private void decSize(ActionEvent event) {
+        
     }
     
     //Untested
     public void setBlanckMap() {
         fromMainMenu = true;
+        verifyButton.setDisable(true);
+        problem = null;
         cancelButtonImage.setImage(new Image("/imgData/arrowLeftBlue.png"));
         cancelButton.setText("Menu principal");
         mapTitle.setText("Mapa en blanco");
@@ -277,16 +383,21 @@ public class FXMLDocumentController implements Initializable {
     
     //Untested
     public void setTest(model.Problem problem) {
+        if (!fromMainMenu) {
+            answersList = problem.getAnswers();
+        }
+        
+        this.problem = problem;
         fromMainMenu = false;
+        verifyButton.setDisable(false);
         cancelButtonImage.setImage(new Image("/imgData/cancelBlue.png"));
         cancelButton.setText("Cancelar");
         mapTitle.setText("Enunciado del problema");
         problemLabel.setText(problem.getText());
-        List<model.Answer> answers = problem.getAnswers();
-        option1Button.setText(answers.get(0).getText());
-        option2Button.setText(answers.get(1).getText());
-        option3Button.setText(answers.get(2).getText());
-        option4Button.setText(answers.get(3).getText());
+        option1Button.setText(answersList.get(0).getText());
+        option2Button.setText(answersList.get(1).getText());
+        option3Button.setText(answersList.get(2).getText());
+        option4Button.setText(answersList.get(3).getText());
         option1Button.setVisible(true);
         option2Button.setVisible(true);
         option3Button.setVisible(true);
@@ -306,4 +417,16 @@ public class FXMLDocumentController implements Initializable {
         cancelButton.getScene().getWindow().hide();
     }
 
+    private void dissableOptions() {
+        option1Button.setDisable(true);
+        option2Button.setDisable(true);
+        option3Button.setDisable(true);
+        option4Button.setDisable(true);
+    }
+
+    private void verifyToExit() {
+        verifyButton.setText("Salir");
+        veirfyButonImage.setImage(new Image("/imgData/exitLogo.png"));
+    }
+    
 }

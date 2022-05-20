@@ -106,13 +106,16 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Text>
                         <Label fx:id="emailLabel" text="correoElectronico">
                            <VBox.margin>
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <VBox.margin>
@@ -126,13 +129,16 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Text>
                         <Label fx:id="birthdayLabel" text="fechaNacimiento">
                            <VBox.margin>
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                      <VBox.margin>
@@ -167,13 +173,16 @@
                                     <Insets top="20.0" />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="18.0" />
                                  </font>
                               </Text>
                               <Label fx:id="correctLabel" text="aciertos">
                                  <HBox.margin>
                                     <Insets left="20.0" top="20.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
@@ -181,6 +190,9 @@
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -193,13 +205,16 @@
                                     <Insets top="20.0" />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="18.0" />
                                  </font>
                               </Text>
                               <Label fx:id="failureLabel" text="fallos">
                                  <HBox.margin>
-                                    <Insets left="38.0" top="20.0" />
+                                    <Insets left="44.0" top="20.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
@@ -207,6 +222,9 @@
                            <HBox.margin>
                               <Insets left="10.0" top="20.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -219,13 +237,16 @@
                                     <Insets top="20.0" />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="18.0" />
                                  </font>
                               </Text>
                               <Label fx:id="gradeLabel" text="nota">
                                  <HBox.margin>
                                     <Insets left="20.0" top="20.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>

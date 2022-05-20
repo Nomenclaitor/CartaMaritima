@@ -158,15 +158,29 @@ public class auxiliarMethods {
         errorAlert.showAndWait();
     }
     
-    public static boolean promptAlert(String headerType, String bodyText) {
+    public static boolean promptAlert(String headerText, String bodyText) {
         Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
         exitAlert.setTitle("Confirmación de Salida");
-        exitAlert.setHeaderText("Está seguro de " + headerType +"?");
+        exitAlert.setHeaderText("Está seguro de " + headerText +"?");
         exitAlert.setContentText(bodyText);
         Optional<ButtonType> result = exitAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             return true;
         }
         return false;
+    }
+    
+    public static void promptError(String titleText, String headerText, String bodyText) {
+        Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+        errorAlert.setTitle(titleText);
+        errorAlert.setHeaderText(headerText);
+        errorAlert.setContentText(bodyText);
+        errorAlert.showAndWait();
+    }
+    
+    public static void dumpErrorTrace(StackTraceElement[] traceArray) {
+        for (int aux = 0; aux < traceArray.length; aux++) {
+            System.out.println(traceArray[aux].toString());
+        }
     }
 }

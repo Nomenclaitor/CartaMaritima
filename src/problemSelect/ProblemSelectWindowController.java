@@ -133,10 +133,12 @@ public class ProblemSelectWindowController implements Initializable {
     private void changeUserPressed(ActionEvent event) {
         if (auxiliarMethods.promptAlert("salir al menu de Login", "Si ha modificado alguno de los campos, estos no se guardarán.\nHaga click en OK para cerrar sesión o cancelar para cerrar esta ventana emergente.")) {
             //add Session
+            PoiUPVApp.saveSession();
             PoiUPVApp.currentUser = null;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/loginPackage/loginFXML.fxml"));
             auxiliarMethods.loadWindow(loader, "nautica Login", 800, 480);
         }
+        changeuUserButton.getScene().getWindow().hide();
     }
 
 
@@ -177,7 +179,7 @@ public class ProblemSelectWindowController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
-            System.out.println("IOException loading the map from random exercise window");
+            System.out.println("IOException loading the map from selected exercise window");
         }
     }
 
@@ -185,11 +187,10 @@ public class ProblemSelectWindowController implements Initializable {
     private void mainMenuPressed(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../principalUsuarios/vpUsuariosFXML.fxml"));
         auxiliarMethods.loadWindow(loader, "Menu Principal", 960, 540);
-        changeuUserButton.getScene().getWindow().hide();
+        backButton.getScene().getWindow().hide();
     }
 
     private Problem getRandom() {
-        System.out.println(listaProblemas.size());
         return listaProblemas.get(new Random().nextInt(listaProblemas.size()));
     }
 
