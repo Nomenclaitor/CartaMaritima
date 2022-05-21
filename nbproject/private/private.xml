@@ -4,15 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="IPC"/>
         <group>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/dataModPackage/DataModFXMLController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/poiupv/PoiUPVApp.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/newUserPackage/SignupPrincipalFXMLController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/newUserPackage/SignupProfilePictureController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/auxiliaries/auxiliarMethods.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/newUserPackage/SignupFXMLController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/loginPackage/LoginFXMLController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/principalUsuarios/VpUsuariosFXMLController.java</file>
-            <file>file:/D:/Informatica/Universidad%20Politecnica%20de%20Valencia/A2/10.IPC/Proyecto/nautica418/CartaMaritima/src/problemSelect/ProblemSelectWindowController.java</file>
+            <file>file:/C:/Users/tatia/OneDrive/Documentos/proyectoIPC/CartaMaritima/src/poiupv/PoiUPVApp.java</file>
+            <file>file:/C:/Users/tatia/OneDrive/Documentos/proyectoIPC/CartaMaritima/src/poiupv/FXMLDocumentController.java</file>
         </group>
     </open-files>
 </project-private>

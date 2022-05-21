@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package poiupv;
-
+//1211085207@Qq
 import java.util.Optional;
 import auxiliaries.auxiliarMethods;
+import java.awt.MouseInfo;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +35,17 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Navegacion;
 import poiupv.Poi;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 /**
  *
@@ -54,7 +60,12 @@ public class FXMLDocumentController implements Initializable {
     // la variable zoomGroup se utiliza para dar soporte al zoom
     // el escalado se realiza sobre este nodo, al escalar el Group no mueve sus nodos
     private Group zoomGroup;
-
+    
+    private Circle circle;
+    private double centerX, centerY;
+    private double radius;
+    boolean firstClicked;
+            
     @FXML
     private ScrollPane map_scrollpane;
     @FXML
@@ -105,6 +116,9 @@ public class FXMLDocumentController implements Initializable {
     private Button decSizeButton;
     @FXML
     private ImageView anglePortractor;
+    
+    @FXML
+    private Pane pane;
 
     private boolean fromMainMenu = false;
     
@@ -142,6 +156,18 @@ public class FXMLDocumentController implements Initializable {
         map_scrollpane.setHvalue(scrollH);
         map_scrollpane.setVvalue(scrollV);
     }
+    
+        @FXML
+    void decSize(ActionEvent event) {
+        double sliderVal = sizeSlider.getValue();
+        sizeSlider.setValue(sliderVal -= 1);
+
+    }
+    @FXML
+    void incSize(ActionEvent event) {
+    double sliderVal = sizeSlider.getValue();
+    sizeSlider.setValue(sliderVal += 1);
+    }
 
     private void initData() {
         hm.put("2F", new Poi("2F", "Edificion del DSIC", 325, 225));
@@ -159,6 +185,7 @@ public class FXMLDocumentController implements Initializable {
         zoom_slider.setValue(1.0);
         zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
         
+        sizeSlider.setMin(5);
         //=========================================================================
         //Envuelva el contenido de scrollpane en un grupo para que 
         //ScrollPane vuelva a calcular las barras de desplazamiento tras el escalado
@@ -167,7 +194,8 @@ public class FXMLDocumentController implements Initializable {
         contentGroup.getChildren().add(zoomGroup);
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
-
+        
+        sizeSlider.setValue(1);
     }
 
     @FXML
@@ -236,7 +264,38 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pointPressed(ActionEvent event) {
+        firstClicked = true;
+        // al pulsar el botón se crea un circulo
+        circle = new Circle(sizeSlider.getValue());
+        circle.setFill(colorPicker.getValue());
+        circle.setStroke(colorPicker.getValue());
+        zoomGroup.getChildren().add(circle);
+        circle.setVisible(false);
+        
+        // al clicar sobre el mapa se establece la posición del circulo
+        // se permite establecer la posición de un circulo solo una vez
+         
+        map_scrollpane.setOnMouseClicked(                  
+            e -> {
+                if(firstClicked){
+                    //centerX = e.getSceneX();
+                    //centerY = e.getSceneY();
+                    //centerX = e.getX();
+                    //centerY = e.getY();
+                    centerX = MouseInfo.getPointerInfo().getLocation().x;
+                    centerY = MouseInfo.getPointerInfo().getLocation().y;
+                    // sets the center
+                    circle.setCenterX(centerX);
+                    circle.setCenterY(centerY);
+                    circle.setVisible(true);
+                    e.consume();
+                    firstClicked = false;
+                }
+            }
+        );  
+        event.consume(); 
     }
+    
 
     @FXML
     private void textPressed(ActionEvent event) {
@@ -254,13 +313,6 @@ public class FXMLDocumentController implements Initializable {
     private void changeFiller(ActionEvent event) {
     }
 
-    @FXML
-    private void incSize(ActionEvent event) {
-    }
-
-    @FXML
-    private void decSize(ActionEvent event) {
-    }
     
     //Untested
     public void setBlanckMap() {
