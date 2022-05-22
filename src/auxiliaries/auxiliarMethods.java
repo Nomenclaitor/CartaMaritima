@@ -178,6 +178,14 @@ public class auxiliarMethods {
         errorAlert.showAndWait();
     }
     
+    public static void promptInformation(String titleText, String headerText, String bodyText) {
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle(titleText);
+        infoAlert.setHeaderText(headerText);
+        infoAlert.setContentText(bodyText);
+        infoAlert.showAndWait();
+    }
+    
     public static void dumpErrorTrace(StackTraceElement[] traceArray) {
         for (int aux = 0; aux < traceArray.length; aux++) {
             System.out.println(traceArray[aux].toString());

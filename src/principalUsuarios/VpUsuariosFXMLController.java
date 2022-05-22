@@ -78,7 +78,9 @@ public class VpUsuariosFXMLController implements Initializable {
         emailLabel.setText(PoiUPVApp.currentUser.getEmail());
         birthdayLabel.setText(PoiUPVApp.currentUser.getBirthdate().toString());
         localClockInitialize();
-        setLabels();
+        if (!PoiUPVApp.currentUser.getSessions().isEmpty()) {
+            setLabels();
+        }
     }    
 
     @FXML

@@ -60,7 +60,7 @@ public class SignupProfilePictureController implements Initializable {
     private Text customPicLabel;
 
     
-    private String profileUrl = "../imgData/avatars/1652720318714.png";
+    private String profileUrl = "/imgData/avatars/1652720318714.png";
     private ImageView pic1;
     @FXML
     private ImageView defaultPic6;
@@ -108,7 +108,7 @@ public class SignupProfilePictureController implements Initializable {
     private void selectPic1(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(profileUrl));
-        this.profileUrl = "../imgData/avatars/avatar1.png";
+        this.profileUrl = "/imgData/avatars/avatar1.png";
         auxiliarMethods.highlightSelection(profilePic1);
     }
 
@@ -116,7 +116,7 @@ public class SignupProfilePictureController implements Initializable {
     private void selectPic2(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(profileUrl));
-        this.profileUrl = "../imgData/avatars/avatar2.png";
+        this.profileUrl = "/imgData/avatars/avatar2.png";
         auxiliarMethods.highlightSelection(profilePic2);
     }
 
@@ -124,7 +124,7 @@ public class SignupProfilePictureController implements Initializable {
     private void selectPic3(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(profileUrl));
-        this.profileUrl = "../imgData/avatars/avatar3.png";
+        this.profileUrl = "/imgData/avatars/avatar3.png";
         auxiliarMethods.highlightSelection(profilePic3);
     }
 
@@ -132,7 +132,7 @@ public class SignupProfilePictureController implements Initializable {
     private void selectPic4(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(profileUrl));
-        this.profileUrl = "../imgData/avatars/avatar4.png";
+        this.profileUrl = "/imgData/avatars/avatar4.png";
         auxiliarMethods.highlightSelection(profilePIc4);
     }
 
@@ -140,7 +140,7 @@ public class SignupProfilePictureController implements Initializable {
     private void selectPic5(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(profileUrl));
-        this.profileUrl = "../imgData/avatars/1652720318714.png";
+        this.profileUrl = "/imgData/avatars/1652720318714.png";
         auxiliarMethods.highlightSelection(profilePic5);
     }
 
@@ -162,15 +162,15 @@ public class SignupProfilePictureController implements Initializable {
     
     private Button getButton(String imageString) {
         switch(imageString) {
-            case "../imgData/avatars/avatar1.png":
+            case "/imgData/avatars/avatar1.png":
                 return profilePic1;
-            case "../imgData/avatars/avatar2.png":
+            case "/imgData/avatars/avatar2.png":
                 return profilePic2;
-            case "../imgData/avatars/avatar3.png":
+            case "/imgData/avatars/avatar3.png":
                 return profilePic3;
-            case "../imgData/avatars/avatar4.png":
+            case "/imgData/avatars/avatar4.png":
                 return profilePIc4;
-            case "../imgData/avatars/1652720318714.png":
+            case "/imgData/avatars/1652720318714.png":
                 return profilePic5;
             default:
                 System.out.println("Ooops, either it was a custom image or something went extremely wrong");

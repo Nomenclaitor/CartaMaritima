@@ -6,14 +6,17 @@
 package poiupv;
 
 import DBAccess.NavegacionDAOException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Navegacion;
 import model.Session;
 
@@ -31,6 +34,7 @@ public class PoiUPVApp extends Application {
     public static int incorrect = 0;
     
     private static Scene scene;
+    private static Stage primaryStage;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -44,6 +48,7 @@ public class PoiUPVApp extends Application {
         //currentUser = navLib.getUser("nombreTest");
         //currentUser.setAvatar(new Image("/imgData/85498161615209203_1636332751.jpg"));
         //currentUser.setBirthdate(LocalDate.now());
+        primaryStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("/loginPackage/loginFXML.fxml"));
         
         scene = new Scene(root);
@@ -70,13 +75,19 @@ public class PoiUPVApp extends Application {
         }
     }
     
+    //ALERT
+    /**
     public void stop() {
         currentSession = new Session(LocalDateTime.now(), correct, incorrect);
         try {
-            currentUser.addSession(currentSession);
+            if (currentUser != null) {
+                auxiliaries.auxiliarMethods.promptAlert("salir de la apicacion", "Los datos de esta sesión se guardará y se cerrerá su sesión");
+                currentUser.addSession(currentSession);
+            }
         } catch (NavegacionDAOException e) {
-            System.out.println("Error saving session at app exit");
+            
         }
     }
-    
+    * */
+
 }

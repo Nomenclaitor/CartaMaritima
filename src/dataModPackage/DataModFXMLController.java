@@ -296,7 +296,7 @@ public class DataModFXMLController implements Initializable {
     private void selectPic1(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(newProfileImage.getUrl()));
-        this.newProfileImage = new Image("../imgData/avatars/avatar1.png");
+        this.newProfileImage = new Image("/imgData/avatars/avatar1.png");
         auxiliarMethods.highlightSelection(profilePic1);
     }
 
@@ -304,7 +304,7 @@ public class DataModFXMLController implements Initializable {
     private void selectPic2(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(newProfileImage.getUrl()));
-        this.newProfileImage = new Image("../imgData/avatars/avatar2.png");
+        this.newProfileImage = new Image("/imgData/avatars/avatar2.png");
         auxiliarMethods.highlightSelection(profilePic2);
     }
 
@@ -312,7 +312,7 @@ public class DataModFXMLController implements Initializable {
     private void selectPic3(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(newProfileImage.getUrl()));
-        this.newProfileImage = new Image("../imgData/avatars/avatar3.png");
+        this.newProfileImage = new Image("/imgData/avatars/avatar3.png");
         auxiliarMethods.highlightSelection(profilePic3);
     }
 
@@ -320,7 +320,7 @@ public class DataModFXMLController implements Initializable {
     private void selectPic4(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(newProfileImage.getUrl()));
-        this.newProfileImage = new Image("../imgData/avatars/avatar4.png");
+        this.newProfileImage = new Image("/imgData/avatars/avatar4.png");
         auxiliarMethods.highlightSelection(profilePic4);
     }
 
@@ -328,7 +328,7 @@ public class DataModFXMLController implements Initializable {
     private void selectPic5(ActionEvent event) {
         hideCustoms();
         auxiliarMethods.unhighlightSelection(getButton(newProfileImage.getUrl()));
-        this.newProfileImage = new Image("../imgData/avatars/1652720318714.png");
+        this.newProfileImage = new Image("/imgData/avatars/1652720318714.png");
         auxiliarMethods.highlightSelection(profilePic5);
     }
     
@@ -350,15 +350,15 @@ public class DataModFXMLController implements Initializable {
     private Button getButton(String imageString) {
         try {
             switch(imageString) {
-                case "../imgData/avatars/avatar1.png":
+                case "/imgData/avatars/avatar1.png":
                     return profilePic1;
-                case "../imgData/avatars/avatar2.png":
+                case "/imgData/avatars/avatar2.png":
                     return profilePic2;
-                case "../imgData/avatars/avatar3.png":
+                case "/imgData/avatars/avatar3.png":
                     return profilePic3;
-                case "../imgData/avatars/avatar4.png":
+                case "/imgData/avatars/avatar4.png":
                     return profilePic4;
-                case "../imgData/avatars/1652720318714.png":
+                case "/imgData/avatars/1652720318714.png":
                     return profilePic5;
                 default:
                     System.out.println("Ooops, either it was a custom image or something went extremely wrong");

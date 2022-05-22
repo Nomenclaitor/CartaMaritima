@@ -36,12 +36,10 @@ public class sessionDataAux {
     public static void initData() {
         if (!userSessionHistory.isEmpty()) {
             for (int aux = 0; aux < userSessionHistory.size(); aux++) {
-                System.out.println("session" + aux + " Correct: " + userSessionHistory.get(aux).getHits() + "    Faults: " + userSessionHistory.get(aux).getFaults());
                 totalCorrect += userSessionHistory.get(aux).getHits();
                 totalIncorrect += userSessionHistory.get(aux).getFaults();
             }
             if (totalCorrect != 0 || totalIncorrect != 0) {
-                System.out.println(totalCorrect + " " + totalIncorrect);
                 totalGrade = calcGrade(totalCorrect, totalIncorrect);
                 totalCorrectPercentage = calcCorrectPercentage(totalCorrect, totalIncorrect);
                 totalIncorrectPerceentage  = calcIncorrectPercentage(totalCorrect, totalIncorrect);
@@ -59,17 +57,19 @@ public class sessionDataAux {
         List<Session> result = new ArrayList<>();
         if (!userSessionHistory.isEmpty()) {
             //User selected a day before hes first session
-            if (minDate.isAfter(inputMinDate)) {
-                LocalDate auxDate;
-                int counter = 0;
-                do {
+            LocalDate auxDate;
+            int counter = 0;
+            do {
+                if (!userSessionHistory.get(counter).getLocalDate().isBefore(minDate)) {
                     result.add(userSessionHistory.get(counter));
-                    auxDate = userSessionHistory.get(counter).getLocalDate();
-                    counter++;
-                } while (auxDate.isBefore(inputMaxDate) || auxDate.isEqual(inputMaxDate));
-                return result;
-            }
+                }
+                auxDate = userSessionHistory.get(counter).getLocalDate();
+                counter++;
+            } while (auxDate.isBefore(inputMaxDate) && counter < userSessionHistory.size());
+            System.out.println("Finished fetching sessions");
+            return result;
         }
+        System.out.println("Session list is empty");
         return null;
     }
     
@@ -83,6 +83,7 @@ public class sessionDataAux {
         for (int aux = 0; aux < sessionList.size(); aux++) {
             res += sessionList.get(aux).getHits();
         }
+        System.out.println("finished");
         return res;
     }
     
@@ -96,6 +97,7 @@ public class sessionDataAux {
         for (int aux =0; aux < sessionList.size(); aux++) {
             res += sessionList.get(aux).getFaults();
         }
+        System.out.println("finished");
         return res;
     }
     
@@ -171,10 +173,18 @@ public class sessionDataAux {
         return totalIncorrectPerceentage;
     }
     
+    public static LocalDate getMinDate() {
+        return minDate;
+    }
+    
+    public static LocalDate getMaxDate() {
+        return maxDate;
+    }
+    
     public static void midSessionUpdate() {
-        calcGrade(totalCorrect, totalIncorrect);
-        calcCorrectPercentage(totalCorrect, totalIncorrect);
-        calcIncorrectPercentage(totalCorrect, totalIncorrect);
+        totalGrade = calcGrade(totalCorrect, totalIncorrect);
+        totalCorrectPercentage = calcCorrectPercentage(totalCorrect, totalIncorrect);
+        totalIncorrectPerceentage = calcIncorrectPercentage(totalCorrect, totalIncorrect);
     }
     
     

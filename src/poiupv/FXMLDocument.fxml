@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -33,6 +34,18 @@
             <Button mnemonicParsing="false" onAction="#zoomOut" text="-" />
             <Slider fx:id="zoom_slider" HBox.hgrow="SOMETIMES" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#zoomIn" text="+" />
+            <Button fx:id="clearMapButton" mnemonicParsing="false" onAction="#clearPressed">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgData/eraserLogo.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -125,62 +138,71 @@
                <children>
                   <HBox prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="lineButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#linePressed" HBox.hgrow="ALWAYS">
+                        <ToggleButton fx:id="lineButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/lineLogo.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="arcButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#arcPressed" HBox.hgrow="ALWAYS">
+                           </graphic>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="mapGroup" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="gridPressed" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" toggleGroup="$mapGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/arcLogo.png" />
-                                 </image></ImageView>
+                                 </image>
+                              </ImageView>
                            </graphic>
-                        </Button>
+                        </ToggleButton>
                      </children>
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="pointButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pointPressed" HBox.hgrow="ALWAYS">
+                        <ToggleButton fx:id="pointButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" toggleGroup="$mapGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/pointLogo.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="textButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#textPressed" HBox.hgrow="ALWAYS">
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="textButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" toggleGroup="$mapGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/testLogo.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </ToggleButton>
                      </children>
                   </HBox>
                   <HBox prefHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="cursorButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cursorPressed" HBox.hgrow="ALWAYS">
+                        <ToggleButton fx:id="cursorButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" toggleGroup="$mapGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/cursorLogo.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="anglerToggler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#anglerPressed" HBox.hgrow="ALWAYS">
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="anglerToggler" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mapOptionSelect" toggleGroup="$mapGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgData/angler.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </ToggleButton>
                      </children>
                   </HBox>
                   <Label maxWidth="1.7976931348623157E308" text="Opciones de puntos" textAlignment="CENTER">
@@ -190,51 +212,55 @@
                   </Label>
                   <HBox prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <ColorPicker fx:id="colorPicker" maxWidth="1.7976931348623157E308" prefHeight="40.0" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="fillerButton" maxHeight="40.0" maxWidth="80.0" mnemonicParsing="false" onAction="#changeFiller" HBox.hgrow="ALWAYS">
+                        <ColorPicker fx:id="colorPicker" maxWidth="1.7976931348623157E308" prefHeight="40.0" HBox.hgrow="ALWAYS">
+                           <value>
+                              <Color red="1.0" />
+                           </value></ColorPicker>
+                        <ToggleButton fx:id="fillerButton" maxHeight="40.0" maxWidth="80.0" mnemonicParsing="false">
                            <graphic>
                               <Circle accessibleRole="BUTTON" fill="#0685bc" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
-                           </graphic></Button>
+                           </graphic>
+                        </ToggleButton>
                      </children>
                   </HBox>
                   <HBox prefHeight="20.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="incSizeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#incSize" text="+" wrapText="true" HBox.hgrow="ALWAYS" />
-                        <Slider fx:id="sizeSlider" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="decSizeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#decSize" text="-" wrapText="true" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="incSizeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#incSize" text="-" wrapText="true" HBox.hgrow="ALWAYS" />
+                        <Slider fx:id="sizeSlider" blockIncrement="1.0" majorTickUnit="2.0" max="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="1.0" minorTickCount="1" value="10.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="decSizeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#decSize" text="+" wrapText="true" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
+                  <ChoiceBox fx:id="shapeChoiceBox" maxWidth="1.7976931348623157E308" prefWidth="150.0" />
                   <Region maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="240.0" prefWidth="90.0" VBox.vgrow="ALWAYS" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#muestraPosicion" pannable="true" vbarPolicy="ALWAYS">
-               <content>
-                  <Pane>
+            <StackPane prefHeight="1080.0" prefWidth="1920.0">
+               <children>
+                  <ScrollPane fx:id="map_scrollpane" maxHeight="5760.0" maxWidth="8960.0" pannable="true" prefHeight="1080.0" prefWidth="1920.0">
+                     <content>
+                        <Pane>
+                           <children>
+                              <ImageView onMouseDragged="#mapDragged" onMousePressed="#mapPressed" onMouseReleased="#mapReleased" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../resources/carta_nautica.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </content>
+                  </ScrollPane>
+                  <StackPane fx:id="anglerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#anglerDragged" onMousePressed="#anglerClicked" prefHeight="410.0" prefWidth="410.0">
                      <children>
-                        <ImageView fitHeight="5760.0" fitWidth="8960.0" layoutX="-656.0" layoutY="-363.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../resources/carta_nautica.jpg" />
-                           </image>
-                        </ImageView>
-                        <MenuButton fx:id="map_pin" mnemonicParsing="false" prefHeight="60.0" prefWidth="48.0" visible="false">
-                           <items>
-                              <MenuItem fx:id="pin_info" mnemonicParsing="false" text="Action 1" />
-                           </items>
-                           <styleClass>
-                              <String fx:value="menu-button" />
-                              <String fx:value="map-pin" />
-                           </styleClass>
-                        </MenuButton>
-                        <ImageView fx:id="anglePortractor" fitHeight="240.0" fitWidth="240.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <ImageView fx:id="anglePortractor" fitHeight="410.0" fitWidth="410.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@../resources/transportador.png" />
                            </image>
                         </ImageView>
                      </children>
-                  </Pane>
-               </content>
-            </ScrollPane>
+                  </StackPane>
+               </children>
+            </StackPane>
          </items>
       </SplitPane>
       <HBox alignment="CENTER_RIGHT">

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -103,12 +104,12 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="480.0">
                <children>
-                  <BarChart fx:id="sessionChart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                  <BarChart fx:id="sessionChart" animated="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@graphCSS.css" title="Fallos y aciertos" VBox.vgrow="ALWAYS">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis animated="false" prefHeight="20.0" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis animated="false" side="LEFT" />
                     </yAxis>
                   </BarChart>
                </children>
@@ -124,13 +125,16 @@
                                     <Insets />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="16.0" />
                                  </font>
                               </Text>
                               <Label fx:id="correctLabel" text="aciertos">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
@@ -138,6 +142,9 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -150,13 +157,16 @@
                                     <Insets />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="16.0" />
                                  </font>
                               </Text>
                               <Label fx:id="failureLabel" text="fallos">
                                  <HBox.margin>
                                     <Insets left="38.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
@@ -164,6 +174,9 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -176,13 +189,16 @@
                                     <Insets />
                                  </HBox.margin>
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="14.0" />
+                                    <Font name="Arial Rounded MT Bold" size="16.0" />
                                  </font>
                               </Text>
                               <Label fx:id="gradeLabel" text="nota">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
@@ -199,25 +215,37 @@
                   <HBox alignment="CENTER_LEFT" minHeight="30.0" prefHeight="30.0" prefWidth="200.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desde:  " />
-                        <DatePicker fx:id="lowerLimitPicker" maxWidth="1.7976931348623157E308">
+                        <DatePicker fx:id="lowerLimitPicker" maxWidth="1.7976931348623157E308" minWidth="80.0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </DatePicker>
                         <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasta: " />
-                        <DatePicker fx:id="upperLimitPicker" maxWidth="1.7976931348623157E308">
+                        <DatePicker fx:id="upperLimitPicker" maxWidth="1.7976931348623157E308" minWidth="80.0">
                            <HBox.margin>
                               <Insets right="4.0" />
                            </HBox.margin>
                         </DatePicker>
-                        <Button fx:id="showDataButton" maxWidth="1.7976931348623157E308" minWidth="70.0" mnemonicParsing="false" onAction="#showData" style="-fx-background-color: #0685bc;" text="Mostrar" textFill="WHITE">
+                        <Button fx:id="showDataButton" maxWidth="1.7976931348623157E308" minHeight="26.0" minWidth="70.0" mnemonicParsing="false" onAction="#showData" style="-fx-background-color: #0685bc;" text="Mostrar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets right="20.0" />
+                              <Insets right="5.0" />
                            </HBox.margin>
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="eraseDatesButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#erasePressed">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgData/eraserLogo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <VBox.margin>
